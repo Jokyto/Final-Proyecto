@@ -5,34 +5,30 @@ using UnityEngine;
 public class PlayerMovementManager : MonoBehaviour
 {
     [SerializeField] private Animator playerAnimator;
-    [SerializeField] float walkingSpeed = 3f;
-    [SerializeField] float playerRotationSpeed = 300f;
-    [SerializeField] float gravity = -9.8f;
-    [SerializeField] float jumpHeight = 6f;
-    private Vector3 velocidadVertical;
-    private CharacterController ccPlayer;
+    [SerializeField] private float walkingSpeed = 3f;
+    [SerializeField] private float playerRotationSpeed = 300f;
+    [SerializeField] private float jumpHeight = 6f;
     private bool isGrounded;
+    private Rigidbody rbPlayer;
 
 
     void Start()
     {
-        ccPlayer = GetComponent<CharacterController>();
-        playerAnimator.SetBool ("isRunning", false);
-        playerAnimator.SetBool ("isWalking", false);
-        
+
+        playerAnimator.SetBool("isRunning", false);
+        playerAnimator.SetBool("isWalking", false);
+        rbPlayer = GetComponent<Rigidbody>();
     }
 
 
     void Update()
     {
-        //Gravedad
-        velocidadVertical.y += gravity * Time.deltaTime;
-        ccPlayer.Move(velocidadVertical * Time.deltaTime);
 
 
         PlayerMove();
         PlayerRotate();
         PlayerJump();
+        FallDetection();
 
     }
 
@@ -41,48 +37,54 @@ public class PlayerMovementManager : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            ccPlayer.Move(transform.TransformDirection(Vector3.forward) * walkingSpeed * Time.deltaTime);
-            playerAnimator.SetBool("isWalking", true); 
+            transform.Translate(Vector3.forward * walkingSpeed * Time.deltaTime);
+            playerAnimator.SetBool("isWalking", true);
         }; //caminar
-        if (Input.GetKeyUp(KeyCode.W)){
+        if (Input.GetKeyUp(KeyCode.W))
+        {
             playerAnimator.SetBool("isWalking", false);
         };
 
 
         if (Input.GetKey(KeyCode.S))
         {
-            ccPlayer.Move(transform.TransformDirection(Vector3.back) * walkingSpeed * Time.deltaTime);
+            transform.Translate(Vector3.back * walkingSpeed * Time.deltaTime);
             playerAnimator.SetBool("isWalking", true);
             playerAnimator.SetBool("isWalkingBack", true);
         }; //retroceder
-        if (Input.GetKeyUp(KeyCode.S)){
+        if (Input.GetKeyUp(KeyCode.S))
+        {
             playerAnimator.SetBool("isWalking", false);
             playerAnimator.SetBool("isWalkingBack", false);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            ccPlayer.Move(transform.TransformDirection(Vector3.left) * walkingSpeed * Time.deltaTime);
-            playerAnimator.SetBool("isStrafeLeft", true); 
+            transform.Translate(Vector3.left * walkingSpeed * Time.deltaTime);
+            playerAnimator.SetBool("isStrafeLeft", true);
         }; //strafe left
-        if (Input.GetKeyUp(KeyCode.A)){
+        if (Input.GetKeyUp(KeyCode.A))
+        {
             playerAnimator.SetBool("isStrafeLeft", false);
         };
 
         if (Input.GetKey(KeyCode.D))
         {
-            ccPlayer.Move(transform.TransformDirection(Vector3.right) * walkingSpeed * Time.deltaTime);
-            playerAnimator.SetBool("isStrafeRight", true); 
+            transform.Translate(Vector3.right * walkingSpeed * Time.deltaTime);
+            playerAnimator.SetBool("isStrafeRight", true);
         }; //strafe right
 
-        if (Input.GetKeyUp(KeyCode.D)){
+        if (Input.GetKeyUp(KeyCode.D))
+        {
             playerAnimator.SetBool("isStrafeRight", false);
         };
 
-        if (Input.GetKey(KeyCode.LeftShift)){
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
             playerAnimator.SetBool("isRunning", true);
             walkingSpeed = 7f;
         };
-        if (Input.GetKeyUp(KeyCode.LeftShift)){
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
             playerAnimator.SetBool("isRunning", false);
             walkingSpeed = 3f;
         };
@@ -99,35 +101,58 @@ public class PlayerMovementManager : MonoBehaviour
 
     private void PlayerJump()
     {
-        if (Input.GetKey(KeyCode.Space) && ccPlayer.isGrounded)
-        //if (Input.GetKey(KeyCode.Space) && isGrounded)
-        {
 
-            velocidadVertical.y = Mathf.Sqrt(-jumpHeight * gravity);
+        if (Input.GetKey(KeyCode.Space) && isGrounded)
+        {
+            rbPlayer.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+
             playerAnimator.SetBool("isJump", true);
 
         };
-        if (Input.GetKeyUp(KeyCode.Space)){
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
             playerAnimator.SetBool("isJump", false);
         }
+    }
 
-        if (!ccPlayer.isGrounded){
-           playerAnimator.SetBool("isFalling", true); 
+    private void FallDetection()
+    {
+        if (isGrounded)
+        {
+            playerAnimator.SetBool("isFalling", false);
         }
-        if (ccPlayer.isGrounded){
-           playerAnimator.SetBool("isFalling", false); 
+        else
+        {
+            playerAnimator.SetBool("isFalling", true);
         }
     }
 
-   /*private void OnTriggerStay(Collider self)  {
-        isGrounded = true;
-        playerAnimator.SetBool("falling", false);
+    private void OnTriggerStay(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            Debug.Log("colision con piso");
+        }
     }
 
-   private void OnTriggerExit(Collider self) {
-       isGrounded = false;
-       playerAnimator.SetBool("falling", true);
-   } */
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+            Debug.Log("sin colision con piso");
+        }
+    }
+
+
+
+
+
+
+
 
 
 

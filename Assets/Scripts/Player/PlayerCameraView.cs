@@ -21,14 +21,10 @@ public class PlayerCameraView : MonoBehaviour
     void PlayerCameraVerticalRotate()
     {
 
-        
-
- 
-
         float hAxis = Input.GetAxis("Mouse Y");
-       float ejevertical =  Mathf.Clamp(hAxis, -31f, 41f) * cameraRotationSpeed;
-        transform.Rotate(Vector3.left, ejevertical  * Time.deltaTime);
-        
+        float ejevertical = Mathf.Clamp(hAxis, -31f, 41f) * cameraRotationSpeed;
+        transform.Rotate(Vector3.left, ejevertical * Time.deltaTime);
+
 
     }
 }

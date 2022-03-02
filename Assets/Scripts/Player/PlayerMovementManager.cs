@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +6,23 @@ using UnityEngine;
 public class PlayerMovementManager : MonoBehaviour
 {
     [SerializeField] private Animator playerAnimator;
+
+    //variables movimiento
     [SerializeField] private float walkingSpeed = 3f;
     [SerializeField] private float playerRotationSpeed = 300f;
     [SerializeField] private float jumpHeight = 6f;
+
+    //variables disparo
+    [SerializeField] private float cooldown;
+    [SerializeField] private float fireRate = 1f;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject shootPoint1;
+    [SerializeField] float load = 1f;
+
     private bool isGrounded;
     private Rigidbody rbPlayer;
+    private bool canshoot;
+
 
 
     void Start()
@@ -29,7 +42,57 @@ public class PlayerMovementManager : MonoBehaviour
         PlayerRotate();
         PlayerJump();
         FallDetection();
+        PlayerShoot();
+        PlayerCooldown();
 
+    }
+
+    private void PlayerCooldown()
+    {
+        if (!canshoot)
+        {
+
+            cooldown -= Time.deltaTime * fireRate;
+
+            if (cooldown <= 0f)
+            {
+                canshoot = true;
+
+            }
+
+        };
+    }
+
+    private void PlayerShoot()
+    {
+
+        load -= Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            load = 1f;
+            if (canshoot)
+            {
+
+                playerAnimator.SetBool("isCasting", true);
+
+                if (load <= 0f)
+                {
+                    Instantiate(bulletPrefab, shootPoint1.transform.position, shootPoint1.transform.rotation);
+
+                }
+
+                canshoot = false;
+                cooldown = 3f;
+
+            };
+
+        };
+
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            playerAnimator.SetBool("isCasting", false);
+        }
     }
 
     void PlayerMove()

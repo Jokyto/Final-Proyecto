@@ -8,7 +8,7 @@ public class BulletMovement : MonoBehaviour
     private Rigidbody rbBullet;
     [SerializeField] private float castForce = 3;
     [SerializeField] float destroyTimer = 3f;
-    [SerializeField] float load = 1f;
+    
 
 
     void Start()
@@ -25,11 +25,9 @@ public class BulletMovement : MonoBehaviour
 
     private void BulletImpulse()
     {
-        load -= Time.deltaTime;
-        if (load < 0f)
-        {
+       
             rbBullet.AddRelativeForce(Vector3.forward * castForce, ForceMode.Impulse);
-        }
+        
     }
 
     private void DestroyTimer()

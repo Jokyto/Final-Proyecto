@@ -16,7 +16,7 @@ public class PlayerMovementManager : MonoBehaviour
     [SerializeField] private float cooldown;
     [SerializeField] private float fireRate = 1f;
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private GameObject shootPoint1;
+    [SerializeField] public GameObject shootPoint1;
     [SerializeField] float load = 1f;
 
     private bool isGrounded;
@@ -66,31 +66,18 @@ public class PlayerMovementManager : MonoBehaviour
     private void PlayerShoot()
     {
 
-        load -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canshoot)
         {
-            load = 1f;
-            if (canshoot)
-            {
-
-                playerAnimator.SetBool("isCasting", true);
-
-                if (load <= 0f)
-                {
-                    Instantiate(bulletPrefab, shootPoint1.transform.position, shootPoint1.transform.rotation);
-
-                }
-
-                canshoot = false;
-                cooldown = 3f;
-
-            };
-
+            playerAnimator.SetBool("isCasting", true);         
         };
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
+            Instantiate(bulletPrefab, shootPoint1.transform.position, shootPoint1.transform.rotation);
+            canshoot = false;
+            cooldown = 1f;
             playerAnimator.SetBool("isCasting", false);
         }
     }

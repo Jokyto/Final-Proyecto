@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1098132739}
   - component: {fileID: 1098132741}
   - component: {fileID: 1098132740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: particula
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4815,7 +4815,7 @@ GameObject:
   - component: {fileID: 3066830601839748333}
   - component: {fileID: 5595303342269064922}
   - component: {fileID: 5208414961604106215}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4898,9 +4898,9 @@ GameObject:
   - component: {fileID: -2302622076710478765}
   - component: {fileID: 1592011764829732635}
   - component: {fileID: 4642106343566417535}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fireball pf
-  m_TagString: Untagged
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

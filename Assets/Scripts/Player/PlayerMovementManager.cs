@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerMovementManager : MonoBehaviour
 {
     [SerializeField] private Animator playerAnimator;
+    private Rigidbody rbPlayer;
+    protected float playerHealth = 1000;
 
     //variables movimiento
     [SerializeField] private float walkingSpeed = 3f;
@@ -19,8 +21,9 @@ public class PlayerMovementManager : MonoBehaviour
     [SerializeField] public GameObject shootPoint1;
     [SerializeField] float load = 1f;
 
-    private bool isGrounded;
-    private Rigidbody rbPlayer;
+    // Stats bools
+    public bool muerto = false;
+    private bool isGrounded;    
     private bool canshoot;
 
 
@@ -44,7 +47,20 @@ public class PlayerMovementManager : MonoBehaviour
         FallDetection();
         PlayerShoot();
         PlayerCooldown();
+        DeadOrAlive();
 
+    }
+
+    private void DeadOrAlive()
+    {
+       if(playerHealth <= 0f)
+       {
+        muerto = true;
+        Destroy(gameObject);
+       }
+       else{
+        muerto = false;
+       }
     }
 
     private void PlayerCooldown()
@@ -197,7 +213,18 @@ public class PlayerMovementManager : MonoBehaviour
         }
     }
 
-
+private void OnCollisionEnter(Collision other) {
+    
+    if (other.gameObject.CompareTag("EnemyBullet"))
+        {
+            playerHealth -= 50f;
+            
+        }
+     if (other.gameObject.CompareTag("Enemy"))
+     {
+         playerHealth -= 150f;
+     }  
+}
 
 
 

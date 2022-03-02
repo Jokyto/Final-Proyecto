@@ -10,6 +10,7 @@ public class MagicPlatformMovement : MonoBehaviour
     private int currentindex = 0;
     [SerializeField] float minimumDistance = 0.5f;
     [SerializeField] float rotationSpeed;
+    bool goBack;
 
     void Start()
     {
@@ -34,11 +35,16 @@ public class MagicPlatformMovement : MonoBehaviour
         //Desplazamiento entre waypoints
         transform.position += direction * speed * Time.deltaTime;
         //orientacion de la plataforma.
-        transform.forward = Vector3.Lerp(Vector3.forward, direction, rotationSpeed * Time.deltaTime);
+       //transform.forward = Vector3.Lerp(Vector3.forward, direction, rotationSpeed * Time.deltaTime); //no queda bien
 
         if (deltaVector.magnitude <= minimumDistance)
         {
-            currentindex++;
+            if(currentindex == waypoints.Length -1){
+                goBack = true;
+                currentindex--;
+            }else{ 
+                currentindex++;
+                }           
         }
     }
 }

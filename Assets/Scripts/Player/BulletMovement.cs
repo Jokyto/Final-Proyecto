@@ -8,7 +8,7 @@ public class BulletMovement : MonoBehaviour
     private Rigidbody rbBullet;
     [SerializeField] private float castForce = 3;
     [SerializeField] float destroyTimer = 3f;
-    
+
 
 
     void Start()
@@ -25,9 +25,9 @@ public class BulletMovement : MonoBehaviour
 
     private void BulletImpulse()
     {
-       
-            rbBullet.AddRelativeForce(Vector3.forward * castForce, ForceMode.Impulse);
-        
+
+        rbBullet.AddRelativeForce(Vector3.forward * castForce, ForceMode.Impulse);
+
     }
 
     private void DestroyTimer()
@@ -38,5 +38,12 @@ public class BulletMovement : MonoBehaviour
 
             Destroy(gameObject);
         };
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

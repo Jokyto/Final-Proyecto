@@ -41,9 +41,9 @@ public class BulletMovement : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
+        
+        
             Destroy(gameObject);
-        }
+        
     }
 }

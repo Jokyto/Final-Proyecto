@@ -93,7 +93,7 @@ public class PlayerMovementManager : MonoBehaviour
         {
             Instantiate(bulletPrefab, shootPoint1.transform.position, shootPoint1.transform.rotation);
             canshoot = false;
-            cooldown = 1f;
+            cooldown = 2f;
             playerAnimator.SetBool("isCasting", false);
         }
     }

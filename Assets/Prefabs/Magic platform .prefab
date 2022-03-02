@@ -109,6 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: []
-  speed: 2
+  speed: 1
   minimumDistance: 0.5
   rotationSpeed: 0

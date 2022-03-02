@@ -21,11 +21,11 @@ public class MagicPlatformMovement : MonoBehaviour
     void Update()
     {
         PlatformMovement();
-        
+
     }
 
-    
-    
+
+
 
     private void PlatformMovement()
     {
@@ -35,16 +35,26 @@ public class MagicPlatformMovement : MonoBehaviour
         //Desplazamiento entre waypoints
         transform.position += direction * speed * Time.deltaTime;
         //orientacion de la plataforma.
-       //transform.forward = Vector3.Lerp(Vector3.forward, direction, rotationSpeed * Time.deltaTime); //no queda bien
+        //transform.forward = Vector3.Lerp(Vector3.forward, direction, rotationSpeed * Time.deltaTime); //no queda bien
 
         if (deltaVector.magnitude <= minimumDistance)
         {
-            if(currentindex == waypoints.Length -1){
+            if (currentindex >= waypoints.Length - 1)
+            {
                 goBack = true;
-                currentindex--;
-            }else{ 
-                currentindex++;
-                }           
+            }
+            else if (currentindex <= 0)
+            {
+                goBack = false;
+            }
+
+            if(goBack){
+           
+            currentindex--;
+            } else {
+
+             currentindex++;
+            }
         }
     }
 }

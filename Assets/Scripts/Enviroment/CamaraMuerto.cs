@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOver : MonoBehaviour
+public class CamaraMuerto : MonoBehaviour
 {
-
-    PlayerMovementManager player;
-    [SerializeField] GameObject playerPrefab;
+     PlayerMovementManager player;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +17,8 @@ public class GameOver : MonoBehaviour
     {
         if(player.muerto){
            gameObject.SetActive(true);
-           Destroy(playerPrefab, 5f);
+        
         }
-        else{
-            gameObject.SetActive(false);
-        }
+        
     }
 }

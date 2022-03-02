@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour
     private Behaviours behaviour;
     public float enemyHealth;
     [SerializeField] private float enemySpeed = 2f;
-    [SerializeField] private float chaseDistance = 30f;
+    [SerializeField] private float chaseDetection = 30f;
     [SerializeField] private float chaseLimit = 10f;
     [SerializeField] private float minimumDistance = 3f;
     [SerializeField] private float enemyRotationSpeed = 10f;
@@ -25,12 +25,14 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private GameObject enemyBullet;
     [SerializeField] private GameObject enemyShootPoint;
     [SerializeField] private GameObject player;
+
     private Animator EnemyAnimator;
     private Rigidbody rbEnemy;
     private bool isFree = false;
     private bool lowHealth = false;
     private bool canshoot = true;
     private bool canattack = true;
+    public bool muerto = false;
 
 
 
@@ -66,7 +68,7 @@ public class EnemyController : MonoBehaviour
                 MoveTowardsPlayer();
                 EnemyCooldown();
                 AttackPlayer();
-                chaseDistance = 100f;
+                chaseDetection = 100f;
                 chaseLimit = minimumDistance;
                 enemySpeed = 4f;
                 break;
@@ -84,8 +86,9 @@ public class EnemyController : MonoBehaviour
         if((Vector3.Distance(gameObject.transform.position, player.transform.position) <= minimumDistance && lowHealth && canattack))
         {
             EnemyAnimator.SetBool("JumpAttack",true);
-            cooldown =3f;
-            EnemyAnimator.SetBool("JumpAttack",false);
+            cooldown =6f;
+
+            //EnemyAnimator.SetBool("JumpAttack",false);
         }
     }
 
@@ -112,8 +115,8 @@ public class EnemyController : MonoBehaviour
             EnemyAnimator.SetBool("isCasting", true);
             Instantiate(enemyBullet, enemyShootPoint.transform.position, enemyShootPoint.transform.rotation);
             canshoot = false;
-            cooldown = 2f;
-            EnemyAnimator.SetBool("isCasting", false);
+            cooldown = 6f;
+            //EnemyAnimator.SetBool("isCasting", false);
 
         };
 
@@ -130,10 +133,13 @@ public class EnemyController : MonoBehaviour
     {
         Vector3 deltaVector = player.transform.position - transform.position;
         Vector3 direction = deltaVector.normalized;
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= chaseDistance && Vector3.Distance(gameObject.transform.position, player.transform.position) >= chaseLimit)
+
+        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= chaseDetection /*&& 
+        Vector3.Distance(gameObject.transform.position, player.transform.position) >= chaseLimit*/)
         {
         
         transform.position += direction * enemySpeed * Time.deltaTime;
+        Debug.Log("CHASING PLAYER");
             EnemyAnimator.SetBool("isRunning", true);
         };
 
@@ -144,7 +150,6 @@ public class EnemyController : MonoBehaviour
 
         if (other.tag == "Ground")
         {
-
             isFree = true;
         }
     
@@ -153,7 +158,7 @@ public class EnemyController : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
 
-        if (other.gameObject.CompareTag("PlayerBullet"))
+        if (other.gameObject.CompareTag("PlayerBullet") && isFree)
         {
             enemyHealth -= 100f;
         };
@@ -175,8 +180,11 @@ public class EnemyController : MonoBehaviour
 
         if (enemyHealth <= 0f)
         {
-            Destroy(gameObject);
-        };
+            muerto = true;
+            //Destroy(gameObject);
+        }else {
+            muerto = false;
+        }
     }
 }
 

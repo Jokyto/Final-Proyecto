@@ -7,7 +7,7 @@ public class PlayerMovementManager : MonoBehaviour
 {
     [SerializeField] private Animator playerAnimator;
     private Rigidbody rbPlayer;
-    protected float playerHealth = 1000;
+    [SerializeField] float playerHealth = 1000;
 
     //variables movimiento
     [SerializeField] private float walkingSpeed = 3f;
@@ -56,7 +56,7 @@ public class PlayerMovementManager : MonoBehaviour
        if(playerHealth <= 0f)
        {
         muerto = true;
-        Destroy(gameObject);
+        //Destroy(gameObject);
        }
        else{
         muerto = false;
@@ -89,7 +89,7 @@ public class PlayerMovementManager : MonoBehaviour
             playerAnimator.SetBool("isCasting", true);         
         };
 
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.Mouse0)&& canshoot)
         {
             Instantiate(bulletPrefab, shootPoint1.transform.position, shootPoint1.transform.rotation);
             canshoot = false;

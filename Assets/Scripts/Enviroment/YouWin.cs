@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOver : MonoBehaviour
+public class YouWin : MonoBehaviour
 {
-
-    PlayerMovementManager player;
-    [SerializeField] GameObject playerPrefab;
+    EnemyController enemy;
+    [SerializeField] GameObject enemyprefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +15,10 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player.muerto){
+        if(enemy.muerto)
+        {
            gameObject.SetActive(true);
-           Destroy(playerPrefab, 5f);
+           Destroy(enemyprefab);
         }
         else{
             gameObject.SetActive(false);

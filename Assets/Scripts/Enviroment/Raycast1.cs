@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Raycast1 : MonoBehaviour
 {
-    [SerializeField]private float raycastDistance = 10f;
-    private int playerLayer = 3;
+    [SerializeField]private float raycastDistance = 3f;
     [SerializeField] GameObject cameraFirstRoom;
     [SerializeField] GameObject cameraPlayer;
     private bool activated = false;
@@ -36,7 +35,7 @@ public class Raycast1 : MonoBehaviour
         if(Physics.Raycast(transform.position, Vector3.forward,out hit, raycastDistance)){
 
             cameraFirstRoom.SetActive(true);
-            Debug.Log("raycast 1 toco al player y activo la camarafirstroom");
+            cameraPlayer.SetActive(false);
             activated = true;
         }
 

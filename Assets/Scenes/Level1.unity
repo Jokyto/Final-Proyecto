@@ -39013,5 +39013,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: First Group
       objectReference: {fileID: 0}
+    - target: {fileID: 7460872630677539561, guid: 54a2dc318bf8cea40a8fa5926c720cdc, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460872630677539561, guid: 54a2dc318bf8cea40a8fa5926c720cdc, type: 3}
+      propertyPath: m_Size.z
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54a2dc318bf8cea40a8fa5926c720cdc, type: 3}

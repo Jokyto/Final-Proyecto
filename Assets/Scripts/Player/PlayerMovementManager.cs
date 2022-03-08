@@ -12,25 +12,25 @@ public class PlayerMovementManager : MonoBehaviour
     //variables movimiento
     [SerializeField] private float walkingSpeed = 3f;
     [SerializeField] private float playerRotationSpeed = 300f;
-    [SerializeField] private float jumpHeight = 6f;
+    [SerializeField] private float jumpHeight = 3.5f;
 
     //variables disparo
     [SerializeField] private float cooldown;
     [SerializeField] private float fireRate = 1f;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] public GameObject shootPoint1;
-    [SerializeField] float load = 1f;
+  
 
     // Stats bools
     public bool muerto = false;
-    private bool isGrounded;    
+    private bool isGrounded;
     private bool canshoot;
 
 
 
     void Start()
     {
-
+        jumpHeight = 3.5f;
         playerAnimator.SetBool("isRunning", false);
         playerAnimator.SetBool("isWalking", false);
         rbPlayer = GetComponent<Rigidbody>();
@@ -53,14 +53,15 @@ public class PlayerMovementManager : MonoBehaviour
 
     private void DeadOrAlive()
     {
-       if(playerHealth <= 0f)
-       {
-        muerto = true;
-        //Destroy(gameObject);
-       }
-       else{
-        muerto = false;
-       }
+        if (playerHealth <= 0f)
+        {
+            muerto = true;
+           
+        }
+        else
+        {
+            muerto = false;
+        }
     }
 
     private void PlayerCooldown()
@@ -86,10 +87,10 @@ public class PlayerMovementManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && canshoot)
         {
-            playerAnimator.SetBool("isCasting", true);         
+            playerAnimator.SetBool("isCasting", true);
         };
 
-        if (Input.GetKeyUp(KeyCode.Mouse0)&& canshoot)
+        if (Input.GetKeyUp(KeyCode.Mouse0) && canshoot)
         {
             Instantiate(bulletPrefab, shootPoint1.transform.position, shootPoint1.transform.rotation);
             canshoot = false;
@@ -213,18 +214,19 @@ public class PlayerMovementManager : MonoBehaviour
         }
     }
 
-private void OnCollisionEnter(Collision other) {
-    
-    if (other.gameObject.CompareTag("EnemyBullet"))
+    private void OnCollisionEnter(Collision other)
+    {
+
+        if (other.gameObject.CompareTag("EnemyBullet"))
         {
             playerHealth -= 50f;
-            
+
         }
-     if (other.gameObject.CompareTag("Enemy"))
-     {
-         playerHealth -= 150f;
-     }  
-}
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            playerHealth -= 150f;
+        }
+    }
 
 
 

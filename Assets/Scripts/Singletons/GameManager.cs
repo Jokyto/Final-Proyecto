@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public int score, powerupSpeed;
+    public int Mana;
 
     private void Awake()
     {
@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
         {
            instance = this;
            DontDestroyOnLoad(gameObject);
-           score = 0;
-           powerupSpeed = 1;
+           Mana = 100;
+         
         }else{
             Destroy(gameObject);
         }

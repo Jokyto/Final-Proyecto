@@ -9,6 +9,7 @@ TagManager:
   - PlayerBullet
   - Enemy
   - EnemyBullet
+  - Grabable_item
   layers:
   - Default
   - TransparentFX

@@ -60,33 +60,43 @@ public class Inventory : MonoBehaviour
     private void leave_item(int position)
     {
         grabable_dictionary[position].SetActive(true);
-        grabable_dictionary.Remove(position);
-        grabable_dictionary.Add(position,null);
-        player_inventory.Remove(re_arrange[position]);
-        re_arrange.Remove(position);
-        re_arrange.Add(position,"Changed");
-        inventory_position -= 1;
-        if(position != (max_inventory_position - 1))
+        if (inventory_position == 0)
         {
-            for (var i = 0; i < (max_inventory_position); i++)
-            {
-                if (re_arrange[i] != "Changed")
-                {
-                    re_arrange[new_position] = re_arrange[i];
-                    grabable_dictionary[new_position] = grabable_dictionary[i];
-                    new_position +=1;
-                }
-            }
-            re_arrange.Remove(max_inventory_position - 1);
-            grabable_dictionary.Remove(max_inventory_position - 1);          
-            new_position = 0;
+            re_arrange.Remove(inventory_position);
+            grabable_dictionary.Remove(inventory_position);  
+            player_inventory.Clear();
         }
         else
         {
             grabable_dictionary.Remove(position);
+            grabable_dictionary.Add(position,null);
+            player_inventory.Remove(re_arrange[position]);
             re_arrange.Remove(position);
+            re_arrange.Add(position,"Changed");
+            inventory_position -= 1;
+            if(position != (max_inventory_position - 1))
+            {
+                for (var i = 0; i < (inventory_position + 1); i++)
+                {
+                    if (re_arrange[i] != "Changed")
+                    {
+                        re_arrange[new_position] = re_arrange[i];
+                        grabable_dictionary[new_position] = grabable_dictionary[i];
+                        new_position +=1;
+                    }
+                }
+                re_arrange.Remove(inventory_position);
+                grabable_dictionary.Remove(inventory_position);          
+                new_position = 0;
+            }
+            else
+            {
+                grabable_dictionary.Remove(position);
+                re_arrange.Remove(position);
+            }
+         
         }
-        show_dictionary_updated();
+        show_dictionary_updated();  
     }
     private void show_dictionary_updated() 
     {

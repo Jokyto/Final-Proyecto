@@ -6,17 +6,11 @@ public class PlayerCollision : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool isGrounded;
+    [SerializeField] GameManager gameManager;
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+private void Start() {
+    isGrounded = true;
+}
 
     private void OnTriggerStay(Collider other)
     {
@@ -38,17 +32,17 @@ public class PlayerCollision : MonoBehaviour
         }
     }
 
-    /*private void OnCollisionEnter(Collision other)
+   private void OnCollisionEnter(Collision other)
     {
 
         if (other.gameObject.CompareTag("EnemyBullet"))
         {
-            //playerHealth -= 50f;
+            gameManager.playerHealth -= 50f;
 
         }
         if (other.gameObject.CompareTag("Enemy"))
         {
-            //playerHealth -= 150f;
+            gameManager.playerHealth -= 150f;
         }
-    }*/
+    }
 }

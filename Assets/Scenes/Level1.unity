@@ -9419,6 +9419,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 632000527181834888, guid: cea83ff7053ba5e44b0a70d937a98f86, type: 3}
+      propertyPath: m_StepOffset
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 803414417083857567, guid: cea83ff7053ba5e44b0a70d937a98f86, type: 3}
       propertyPath: playerCollision
       value: 
@@ -28085,9 +28089,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2553e06b5db02848adfd703737f2e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mana: 300
+  mana: 300
   playerHealth: 1000
   muerto: 0
+  haveMana: 0
 --- !u!114 &1560088715 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1147511646450667113, guid: cea83ff7053ba5e44b0a70d937a98f86, type: 3}

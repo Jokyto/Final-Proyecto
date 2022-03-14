@@ -34,6 +34,7 @@ public class PlayerMovementManager : MonoBehaviour
         playerAnimator.SetBool("isRunning", false);
         playerAnimator.SetBool("isWalking", false);
         rbPlayer = GetComponent<Rigidbody>();
+        playerAnimator = GetComponent<Animator>();
     }
 
 

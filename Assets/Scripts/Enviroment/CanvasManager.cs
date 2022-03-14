@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
-    [SerializeField] PlayerMovementManager player;
+    [SerializeField] GameManager player;
     [SerializeField] EnemyController enemy;
     [SerializeField] GameObject canvasDeath;
     [SerializeField] GameObject canvasVictory;

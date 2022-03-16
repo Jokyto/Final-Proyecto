@@ -9,7 +9,7 @@ public class PlayerCollision : MonoBehaviour
     [SerializeField] GameManager gameManager;
 
 private void Start() {
-    isGrounded = true;
+    
 }
 
     private void OnTriggerStay(Collider other)

@@ -13,7 +13,13 @@ public class PlayerMovementScript : MonoBehaviour
     private float gravity = -9.8f;
     private Vector3 velocidadVertical;
 
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundDistance = 0.4f;
+    [SerializeField] LayerMask groundMask;
+    private bool isGrounded;
     private CharacterController ccPlayer;
+
+    public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -29,40 +35,35 @@ public class PlayerMovementScript : MonoBehaviour
         PlayerMove();
         PlayerRotate();
         PlayerJump();
+        GroundCheck();
+    }
+
+    private void GroundCheck()
+    {
+        IsGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if(IsGrounded && velocidadVertical.y < 0f)
+        {
+            velocidadVertical.y = -2f;
+        }
     }
 
     private void GravityAcceleration()
     {
-      velocidadVertical.y += gravity * Time.deltaTime;
-      ccPlayer.Move(velocidadVertical * Time.deltaTime);
+        velocidadVertical.y += gravity * Time.deltaTime;
+        ccPlayer.Move(velocidadVertical * Time.deltaTime);
     }
+
+
 
     void PlayerMove()
 
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            ccPlayer.Move(transform.TransformDirection(Vector3.forward) * walkingSpeed * Time.deltaTime);
-           
-        }; //caminar
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            ccPlayer.Move(transform.TransformDirection(Vector3.back) * walkingSpeed * Time.deltaTime);
-        }; //retroceder
-     
-        
-        if (Input.GetKey(KeyCode.A))
-        {
-            ccPlayer.Move(transform.TransformDirection(Vector3.left) * walkingSpeed * Time.deltaTime);
-        } //strafe left
-   
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            ccPlayer.Move(transform.TransformDirection(Vector3.right) * walkingSpeed * Time.deltaTime);
- 
-        }; //strafe right
+        Vector3 direction = new Vector3(horizontal, 0, vertical);
+        ccPlayer.Move(transform.TransformDirection(direction) * walkingSpeed * Time.deltaTime);
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -76,6 +77,9 @@ public class PlayerMovementScript : MonoBehaviour
 
     }
 
+
+
+
     void PlayerRotate()
     {
         float hAxis = Input.GetAxis("Mouse X");
@@ -84,12 +88,12 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void PlayerJump()
     {
-        
 
-        if (Input.GetKey(KeyCode.Space) && playerCollision.isGrounded)
+
+        if (Input.GetKey(KeyCode.Space) && IsGrounded)
         {
-            velocidadVertical.y = Mathf.Sqrt(-jumpHeight*gravity);    
-            ccPlayer.Move(velocidadVertical *Time.deltaTime);
+            velocidadVertical.y = Mathf.Sqrt(-jumpHeight * gravity);
+            //ccPlayer.Move(velocidadVertical *Time.deltaTime);
         };
 
     }

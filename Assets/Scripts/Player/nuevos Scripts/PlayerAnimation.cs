@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] private Animator playerAnimator;
-    [SerializeField] private PlayerCollision playerCollision;
+    [SerializeField] private PlayerMovementScript playerMovement;
     [SerializeField] private PlayerShootScript playerShootScript;
+    [SerializeField] GameManager gameManager;
 
 
     void Start()
@@ -28,12 +29,12 @@ public class PlayerAnimation : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && playerShootScript.canshoot)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && playerShootScript.canshoot && gameManager.haveMana)
         {
             playerAnimator.SetBool("isCasting", true);
         };
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) && playerShootScript.canshoot)
+        if (Input.GetKeyUp(KeyCode.Mouse0) && playerShootScript.canshoot && gameManager.haveMana)
         {
             playerAnimator.SetBool("isCasting", false);
         }
@@ -96,7 +97,7 @@ public class PlayerAnimation : MonoBehaviour
     private void PlayerJump()
     {
 
-        if (Input.GetKey(KeyCode.Space) && playerCollision.isGrounded)
+        if (Input.GetKey(KeyCode.Space) && playerMovement.IsGrounded)
         {
             playerAnimator.SetBool("isJump", true);
         };
@@ -108,7 +109,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void FallDetection()
     {
-        if (playerCollision.isGrounded)
+        if (playerMovement.IsGrounded)
         {
             playerAnimator.SetBool("isFalling", false);
         }

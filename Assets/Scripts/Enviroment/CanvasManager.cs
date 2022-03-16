@@ -30,8 +30,6 @@ public class CanvasManager : MonoBehaviour
             canvasDeath.SetActive(true);
             Destroy(playerPrefab);
             //Destroy(gameObject);
-
-
         }
 
         if (enemy.muerto)

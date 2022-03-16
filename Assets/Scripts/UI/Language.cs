@@ -6,6 +6,11 @@ public class Language : MonoBehaviour
 {
     [SerializeField] GameObject[] Lingua;
     [SerializeField] int lingua_scelta = 0;
+    private void Start() 
+    {
+        AbilitaLingua(1, false);
+        AbilitaLingua(2, false);
+    }
     public void ProssimaLingua()
     {
         if (lingua_scelta != 2)

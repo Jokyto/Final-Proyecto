@@ -290,9 +290,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lingua:
-  - {fileID: 1947393567}
   - {fileID: 1909625492}
   - {fileID: 90434447}
+  - {fileID: 1947393567}
   lingua_scelta: 0
 --- !u!4 &46785675
 Transform:
@@ -305,9 +305,9 @@ Transform:
   m_LocalPosition: {x: 516.6258, y: 201.27374, z: -140.80327}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1947393571}
-  - {fileID: 90434451}
   - {fileID: 1909625496}
+  - {fileID: 90434451}
+  - {fileID: 1947393571}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -525,7 +525,7 @@ GameObject:
   - component: {fileID: 126676912}
   - component: {fileID: 126676911}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Impostazione
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -597,8 +597,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 17
+  m_fontSizeBase: 17
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -1024,7 +1024,7 @@ GameObject:
   - component: {fileID: 511720410}
   - component: {fileID: 511720409}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Controlli
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1426,7 +1426,7 @@ GameObject:
   - component: {fileID: 641472086}
   - component: {fileID: 641472085}
   m_Layer: 5
-  m_Name: Option
+  m_Name: Impostazione
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1558,7 +1558,7 @@ GameObject:
   - component: {fileID: 719049160}
   - component: {fileID: 719049159}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Inizia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1693,7 +1693,7 @@ GameObject:
   - component: {fileID: 739530369}
   - component: {fileID: 739530368}
   m_Layer: 5
-  m_Name: Play
+  m_Name: Inizia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2043,7 +2043,7 @@ GameObject:
   - component: {fileID: 1097771149}
   - component: {fileID: 1097771148}
   m_Layer: 5
-  m_Name: Control
+  m_Name: Controlli
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2758,7 +2758,7 @@ RectTransform:
   m_Children:
   - {fileID: 1991636524}
   m_Father: {fileID: 46785675}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2858,7 +2858,7 @@ RectTransform:
   m_Children:
   - {fileID: 161642179}
   m_Father: {fileID: 46785675}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3247,7 +3247,7 @@ GameObject:
   - component: {fileID: 2088269963}
   - component: {fileID: 2088269962}
   m_Layer: 5
-  m_Name: Controls
+  m_Name: Controles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

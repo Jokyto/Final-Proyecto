@@ -5,44 +5,29 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool isGrounded;
-    [SerializeField] GameManager gameManager;
-
-private void Start() {
+    [SerializeField] PlayerManager playerManager;
     
-}
 
-    private void OnTriggerStay(Collider other)
-    {
+    private void Start() {
 
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-            Debug.Log("colision con piso");
-        }
+        
+        
     }
 
-    private void OnTriggerExit(Collider other)
-    {
+     private void OnControllerColliderHit(ControllerColliderHit hit){
 
-        if (other.gameObject.CompareTag("Ground"))
+     Debug.Log(name + " COLISION CON " + hit.gameObject.name);
+    
+    
+       if (hit.gameObject.CompareTag("EnemyBullet"))
         {
-            isGrounded = false;
-            Debug.Log("sin colision con piso");
+            playerManager.playerHealth -= 50f;
+           
         }
-    }
-
-   private void OnCollisionEnter(Collision other)
-    {
-
-        if (other.gameObject.CompareTag("EnemyBullet"))
+        if (hit.gameObject.CompareTag("Enemy"))
         {
-            gameManager.playerHealth -= 50f;
-
-        }
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            gameManager.playerHealth -= 150f;
+            playerManager.playerHealth -= 150f;
+           
         }
     }
 }

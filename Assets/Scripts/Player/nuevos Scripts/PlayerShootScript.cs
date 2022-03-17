@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerShootScript : MonoBehaviour
 {
 
-    [SerializeField] GameManager gameManager;
+    [SerializeField] PlayerManager playerManager;
 
 
     [SerializeField] private float cooldown;
@@ -48,17 +48,17 @@ public class PlayerShootScript : MonoBehaviour
 
         
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && canshoot && gameManager.haveMana)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canshoot && playerManager.haveMana)
         {
             // playerAnimator.SetBool("isCasting", true);
         };
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) && canshoot && gameManager.haveMana)
+        if (Input.GetKeyUp(KeyCode.Mouse0) && canshoot && playerManager.haveMana)
         {
             Instantiate(bulletPrefab, shootPoint1.transform.position, shootPoint1.transform.rotation);
             canshoot = false;
             cooldown = 2f;
-            gameManager.mana -=10;
+            playerManager.mana -=10;
         }
     }
 }

@@ -15,12 +15,12 @@ public class EnemyController : MonoBehaviour
 
     private Behaviours behaviour;
     public float enemyHealth;
-    [SerializeField] private float enemySpeed = 2f;
-    [SerializeField] private float chaseDetection = 30f;
-    [SerializeField] private float chaseLimit = 10f;
-    [SerializeField] private float minimumDistance = 3f;
-    [SerializeField] private float enemyRotationSpeed = 10f;
-    [SerializeField] private float cooldown= 2f;
+    private float enemySpeed = 4f;
+    private float chaseDetection = 30f;
+    private float chaseLimit = 2f;
+    private float minimumDistance = 1f;
+    private float enemyRotationSpeed = 10f;
+    private float cooldown;
 
     [SerializeField] private GameObject enemyBullet;
     [SerializeField] private GameObject enemyShootPoint;
@@ -47,7 +47,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EnemyHeathState();
+        EnemyHealthState();
 
         switch (behaviour)
         {
@@ -81,23 +81,15 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void AttackPlayer()
-    {
-        if((Vector3.Distance(gameObject.transform.position, player.transform.position) <= minimumDistance && lowHealth && canattack))
-        {
-            EnemyAnimator.SetBool("JumpAttack",true);
-            cooldown =6f;
-
-            //EnemyAnimator.SetBool("JumpAttack",false);
-        }
-    }
-
+   
     private void EnemyCooldown()
     {
         if (!canshoot || !canattack)
         {
 
             cooldown -= Time.deltaTime;
+            EnemyAnimator.SetBool("isCasting", false);
+            EnemyAnimator.SetBool("JumpAttack",false);
 
             if (cooldown <= 0f)
             {
@@ -108,6 +100,17 @@ public class EnemyController : MonoBehaviour
         };
     }
 
+     private void AttackPlayer()
+    {
+        if((Vector3.Distance(gameObject.transform.position, player.transform.position) <= minimumDistance && lowHealth && canattack))
+        {
+            EnemyAnimator.SetBool("JumpAttack",true);
+            cooldown =6f;
+canattack = false;
+            
+        }
+    }
+
     private void ShootPlayer()
     {
         if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= chaseLimit && !lowHealth && canshoot)
@@ -115,8 +118,8 @@ public class EnemyController : MonoBehaviour
             EnemyAnimator.SetBool("isCasting", true);
             Instantiate(enemyBullet, enemyShootPoint.transform.position, enemyShootPoint.transform.rotation);
             canshoot = false;
-            cooldown = 6f;
-            //EnemyAnimator.SetBool("isCasting", false);
+            cooldown = 4f;
+            
 
         };
 
@@ -134,8 +137,8 @@ public class EnemyController : MonoBehaviour
         Vector3 deltaVector = player.transform.position - transform.position;
         Vector3 direction = deltaVector.normalized;
 
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= chaseDetection /*&& 
-        Vector3.Distance(gameObject.transform.position, player.transform.position) >= chaseLimit*/)
+        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= chaseDetection && 
+        Vector3.Distance(gameObject.transform.position, player.transform.position) >= chaseLimit)
         {
         
         transform.position += direction * enemySpeed * Time.deltaTime;
@@ -164,7 +167,7 @@ public class EnemyController : MonoBehaviour
         };
     }
 
-    private void EnemyHeathState()
+    private void EnemyHealthState()
 
     {
         if(enemyHealth >500 && isFree){

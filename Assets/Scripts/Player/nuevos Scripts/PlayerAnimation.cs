@@ -7,7 +7,7 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private PlayerMovementScript playerMovement;
     [SerializeField] private PlayerShootScript playerShootScript;
-    [SerializeField] GameManager gameManager;
+    [SerializeField] PlayerManager playerManager;
 
 
     void Start()
@@ -29,12 +29,12 @@ public class PlayerAnimation : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && playerShootScript.canshoot && gameManager.haveMana)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && playerShootScript.canshoot && playerManager.haveMana)
         {
             playerAnimator.SetBool("isCasting", true);
         };
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) && playerShootScript.canshoot && gameManager.haveMana)
+        if (Input.GetKeyUp(KeyCode.Mouse0) && playerShootScript.canshoot && playerManager.haveMana)
         {
             playerAnimator.SetBool("isCasting", false);
         }

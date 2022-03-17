@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public float playerHealth = 1000;
     public bool muerto = false;
     public bool haveMana;
+    [SerializeField] HealthBar Healthbar;
 
     private void Awake()
     {
@@ -24,10 +25,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+
+        MaxHealth();
+    }
+
+
+
     private void Update()
     {
         DeadOrAlive();
         ManaCount();
+        PlayerHealth();
     }
 
     private void ManaCount()
@@ -36,9 +46,23 @@ public class GameManager : MonoBehaviour
         {
             haveMana = true;
         }
-        else{
+        else
+        {
             haveMana = false;
         }
+    }
+
+    private void MaxHealth()
+    {
+        playerHealth = 1000f;
+        Healthbar.SetMaxHealth(playerHealth);
+    }
+
+    void PlayerHealth()
+    {
+
+        Healthbar.SetHealth(playerHealth);
+
     }
 
     private void DeadOrAlive()

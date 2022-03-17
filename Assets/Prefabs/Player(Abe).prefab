@@ -177,7 +177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099128070155826746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.024, y: 1.271, z: 0}
+  m_LocalPosition: {x: 0.067, y: 1.258, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2620610091819472621}
@@ -572,7 +572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3106791710050469698
 Transform:
   m_ObjectHideFlags: 0
@@ -580,8 +580,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3106791710050469727}
-  m_LocalRotation: {x: -0.13455907, y: 0.021404712, z: -0.0029070375, w: -0.99067014}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: 0.19699521, y: 0.012940403, z: -0.0025998396, w: 0.9803157}
+  m_LocalPosition: {x: 0.1, y: 1.797695, z: -1.528614}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8385499079807221774}
@@ -1786,7 +1786,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 3106791711268854193}
   playerMovement: {fileID: 803414417083857567}
   playerShootScript: {fileID: 3156822083387558723}
-  gameManager: {fileID: 0}
+  playerManager: {fileID: 7378516086236670037}
 --- !u!114 &3156822083387558723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1799,7 +1799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3126579eed5ac9d4192585f6dd5b4683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  playerManager: {fileID: 7378516086236670037}
   cooldown: 2
   fireRate: 1
   bulletPrefab: {fileID: 8849940931856487357, guid: 1951148fce07378449ba95e39cc8c9ca, type: 3}
@@ -1817,8 +1817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deaf5cfd2a14d964e8037f9ef2b54820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
-  gameManager: {fileID: 0}
+  playerManager: {fileID: 7378516086236670037}
 --- !u!114 &7378516086236670037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1831,6 +1830,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8fdd4f73b27d4458011b5b29850b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mana: 300
+  playerHealth: 1000
+  muerto: 0
+  haveMana: 1
+  Healthbar: {fileID: 0}
 --- !u!114 &803414417083857567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1859,7 +1863,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6881658061473626415}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83880780ce33a584f9e90a6c7564b6e4, type: 3}
   m_Name: 

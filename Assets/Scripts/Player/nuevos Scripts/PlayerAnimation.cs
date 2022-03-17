@@ -34,7 +34,7 @@ public class PlayerAnimation : MonoBehaviour
             playerAnimator.SetBool("isCasting", true);
         };
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) && playerShootScript.canshoot && playerManager.haveMana)
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             playerAnimator.SetBool("isCasting", false);
         }

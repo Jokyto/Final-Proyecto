@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     // Start is called before the first frame update
-    private  enum Behaviours
+    private enum Behaviours
     {
         caged,
         highHealth,
@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     private float chaseLimit = 2f;
     private float minimumDistance = 1f;
     private float enemyRotationSpeed = 10f;
-    private float cooldown;
+    [SerializeField] private float cooldown;
 
     [SerializeField] private GameObject enemyBullet;
     [SerializeField] private GameObject enemyShootPoint;
@@ -42,6 +42,7 @@ public class EnemyController : MonoBehaviour
         rbEnemy = GetComponent<Rigidbody>();
         isFree = false;
         behaviour = Behaviours.caged;
+        cooldown = 4f;
     }
 
     // Update is called once per frame
@@ -81,33 +82,37 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-   
+
     private void EnemyCooldown()
     {
-        if (!canshoot || !canattack)
+        if (cooldown >= 0f) //&& !canshoot || !canattack)
         {
 
             cooldown -= Time.deltaTime;
             EnemyAnimator.SetBool("isCasting", false);
-            EnemyAnimator.SetBool("JumpAttack",false);
+            EnemyAnimator.SetBool("JumpAttack", false);
+            canattack = false;
+            canshoot = false;
+        }
 
-            if (cooldown <= 0f)
-            {
-                canshoot = true;
-                canattack = true;
-            }
+        if (cooldown <= 0f)
+        {
+            canshoot = true;
+            canattack = true;
+        }
 
-        };
+
     }
 
-     private void AttackPlayer()
+    private void AttackPlayer()
     {
-        if((Vector3.Distance(gameObject.transform.position, player.transform.position) <= minimumDistance && lowHealth && canattack))
+        if ((Vector3.Distance(gameObject.transform.position, player.transform.position) <= minimumDistance && lowHealth && canattack))
         {
-            EnemyAnimator.SetBool("JumpAttack",true);
-            cooldown =6f;
-canattack = false;
-            
+            EnemyAnimator.SetBool("isRunning", false);
+            EnemyAnimator.SetBool("JumpAttack", true);
+            cooldown = 6f;
+            canattack = false;
+
         }
     }
 
@@ -115,11 +120,12 @@ canattack = false;
     {
         if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= chaseLimit && !lowHealth && canshoot)
         {
+            EnemyAnimator.SetBool("isRunning", false);
             EnemyAnimator.SetBool("isCasting", true);
             Instantiate(enemyBullet, enemyShootPoint.transform.position, enemyShootPoint.transform.rotation);
-            canshoot = false;
+            //canshoot = false;
             cooldown = 4f;
-            
+
 
         };
 
@@ -137,12 +143,12 @@ canattack = false;
         Vector3 deltaVector = player.transform.position - transform.position;
         Vector3 direction = deltaVector.normalized;
 
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= chaseDetection && 
+        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= chaseDetection &&
         Vector3.Distance(gameObject.transform.position, player.transform.position) >= chaseLimit)
         {
-        
-        transform.position += direction * enemySpeed * Time.deltaTime;
-        Debug.Log("CHASING PLAYER");
+
+            transform.position += direction * enemySpeed * Time.deltaTime;
+            Debug.Log("CHASING PLAYER");
             EnemyAnimator.SetBool("isRunning", true);
         };
 
@@ -155,7 +161,7 @@ canattack = false;
         {
             isFree = true;
         }
-    
+
     }
 
     private void OnCollisionEnter(Collision other)
@@ -170,12 +176,13 @@ canattack = false;
     private void EnemyHealthState()
 
     {
-        if(enemyHealth >500 && isFree){
+        if (enemyHealth > 500 && isFree)
+        {
 
             behaviour = Behaviours.highHealth;
         }
 
-        if (enemyHealth < 500f && enemyHealth >0f && isFree)
+        if (enemyHealth < 500f && enemyHealth > 0f && isFree)
         {
             lowHealth = true;
             behaviour = Behaviours.lowHealth;
@@ -185,7 +192,9 @@ canattack = false;
         {
             muerto = true;
             //Destroy(gameObject);
-        }else {
+        }
+        else
+        {
             muerto = false;
         }
     }

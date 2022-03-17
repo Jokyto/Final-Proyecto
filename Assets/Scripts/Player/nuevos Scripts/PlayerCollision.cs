@@ -26,7 +26,7 @@ public class PlayerCollision : MonoBehaviour
         }
         if (hit.gameObject.CompareTag("Enemy"))
         {
-            playerManager.playerHealth -= 150f;
+            playerManager.playerHealth -= 70f;
            
         }
     }

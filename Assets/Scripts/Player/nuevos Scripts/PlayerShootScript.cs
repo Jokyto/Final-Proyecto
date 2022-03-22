@@ -50,7 +50,7 @@ public class PlayerShootScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && canshoot && playerManager.haveMana)
         {
-            // playerAnimator.SetBool("isCasting", true);
+            //playerAnimator.SetBool("isCasting", true);
         };
 
         if (Input.GetKeyUp(KeyCode.Mouse0) && canshoot && playerManager.haveMana)

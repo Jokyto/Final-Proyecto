@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,14 +6,15 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
 
-    public int mana = 300;
+    public float mana = 300f;
+    public float manaRegenRate = 0.5f;
     public float playerHealth = 1000;
     public bool muerto = false;
     public bool haveMana;
     [SerializeField] HealthBar Healthbar;
 
     // Start is called before the first frame update
-   void Start()
+    void Start()
     {
 
         MaxHealth();
@@ -25,6 +27,15 @@ public class PlayerManager : MonoBehaviour
         DeadOrAlive();
         ManaCount();
         PlayerHealth();
+        ManaRegen();
+    }
+
+    private void ManaRegen()
+    {
+        if (mana < 300)
+        {
+            mana += 1 * manaRegenRate * Time.deltaTime;
+        }
     }
 
     private void ManaCount()

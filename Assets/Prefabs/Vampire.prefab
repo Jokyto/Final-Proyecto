@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7887000930084056971}
   - component: {fileID: 7676822055597624020}
   - component: {fileID: 7471862251096965537}
+  - component: {fileID: 448546197}
   m_Layer: 6
   m_Name: Vampire
   m_TagString: Enemy
@@ -82,9 +83,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.6839559
-  m_Height: 1.8283288
+  m_Height: 2.028125
   m_Direction: 1
-  m_Center: {x: -0.009307057, y: 1.0284313, z: 0}
+  m_Center: {x: -0.009307057, y: 0.9285332, z: 0}
 --- !u!65 &7471862251096965537
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -98,6 +99,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8045517, y: 0.36711884, z: 0.460207}
   m_Center: {x: -0.0046535134, y: -0.046535492, z: 0.10237789}
+--- !u!114 &448546197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2623315266303307445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332a8bc5a4b23d346b0b1e1070b5245e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealth: 1000
+  cooldown: 4
+  enemyBullet: {fileID: 8849940931856487357, guid: 235db3f02f013454badc43732ebc743f, type: 3}
+  enemyShootPoint: {fileID: 8136800914021321669}
+  player: {fileID: 0}
+  muerto: 0
 --- !u!1 &8136800914021321669
 GameObject:
   m_ObjectHideFlags: 0

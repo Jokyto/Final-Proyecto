@@ -111,8 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332a8bc5a4b23d346b0b1e1070b5245e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 1000
-  cooldown: 4
+  bossStats: {fileID: 11400000, guid: fc3f3893f23064e428f942119751b1df, type: 2}
   enemyBullet: {fileID: 8849940931856487357, guid: 235db3f02f013454badc43732ebc743f, type: 3}
   enemyShootPoint: {fileID: 8136800914021321669}
   player: {fileID: 0}

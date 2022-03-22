@@ -32,17 +32,17 @@ public class EnemySkeleton : Enemy
 
         
 
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) >= chaseDetection)
+        if (Vector3.Distance(gameObject.transform.position, player.transform.position) >= enemyStats.chaseDetection)
         {
             //Desplazamiento entre waypoints
-            transform.position += direction * enemySpeed * Time.deltaTime;
+            transform.position += direction * enemyStats.enemySpeed * Time.deltaTime;
             EnemyAnimator.SetBool("isWalking", true);
-            enemySpeed = enemyspeedwalking;
+            enemyStats.enemySpeed = enemyspeedwalking;
 
             //orientacion del enemigo
             //transform.forward = Vector3.Lerp(Vector3.forward, direction, enemyRotationSpeed * Time.deltaTime);
              Quaternion newRotation = Quaternion.LookRotation(waypoints[currentindex].position - transform.position);
-            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, enemyRotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, enemyStats.enemyRotationSpeed * Time.deltaTime);
 
             if (deltaVector.magnitude <= patrolMinimumDistance)
             {
@@ -72,7 +72,7 @@ public class EnemySkeleton : Enemy
     public override void MoveTowardsPlayer()
     {
         base.MoveTowardsPlayer();
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= chaseDetection)
+        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= enemyStats.chaseDetection)
         {
             EnemyAnimator.SetBool("isWalking", false);
         }

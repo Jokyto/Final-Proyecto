@@ -74,9 +74,9 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8342470036067150967}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 6f61bc53c41ba664fa527d3386ecfd1e, type: 3}
+  m_Avatar: {fileID: 9000000, guid: a5ea117a2b123564a83a2dbd1c9ea4cf, type: 3}
   m_Controller: {fileID: 9100000, guid: 75d7c0612b147e3408041af24e4bd05f, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9842916a42091e14890a2162a42d230c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyStats: {fileID: 11400000, guid: 2372cd173d671c44f808ca5209940477, type: 2}
   player: {fileID: 0}
   waypoints:
   - {fileID: 0}

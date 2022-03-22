@@ -6,6 +6,24 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     // Start is called before the first frame update
+    
+
+   /* Design data
+    public float enemyHealth;
+    private float enemySpeed = 4f;
+    private float chaseDetection = 30f;
+    private float chaseLimit = 2f;
+    private float minimumDistance = 1f;
+    private float enemyRotationSpeed = 10f;
+    [SerializeField] private float cooldown; */
+
+    [SerializeField] protected Boss_Data bossStats;
+
+ 
+    [SerializeField] private GameObject enemyBullet;
+    [SerializeField] private GameObject enemyShootPoint;
+    [SerializeField] private GameObject player;
+
     private enum Behaviours
     {
         caged,
@@ -14,18 +32,6 @@ public class EnemyController : MonoBehaviour
     }
 
     private Behaviours behaviour;
-    public float enemyHealth;
-    private float enemySpeed = 4f;
-    private float chaseDetection = 30f;
-    private float chaseLimit = 2f;
-    private float minimumDistance = 1f;
-    private float enemyRotationSpeed = 10f;
-    [SerializeField] private float cooldown;
-
-    [SerializeField] private GameObject enemyBullet;
-    [SerializeField] private GameObject enemyShootPoint;
-    [SerializeField] private GameObject player;
-
     private Animator EnemyAnimator;
     private Rigidbody rbEnemy;
     private bool isFree = false;
@@ -42,7 +48,7 @@ public class EnemyController : MonoBehaviour
         rbEnemy = GetComponent<Rigidbody>();
         isFree = false;
         behaviour = Behaviours.caged;
-        cooldown = 4f;
+        bossStats.cooldown = 4f;
     }
 
     // Update is called once per frame
@@ -69,9 +75,9 @@ public class EnemyController : MonoBehaviour
                 MoveTowardsPlayer();
                 EnemyCooldown();
                 AttackPlayer();
-                chaseDetection = 100f;
-                chaseLimit = minimumDistance;
-                enemySpeed = 4f;
+                bossStats.chaseDetection = 100f;
+                bossStats.chaseLimit = bossStats.minimumDistance;
+                bossStats.enemySpeed = 4f;
                 break;
 
             default:
@@ -85,17 +91,17 @@ public class EnemyController : MonoBehaviour
 
     private void EnemyCooldown()
     {
-        if (cooldown >= 0f) //&& !canshoot || !canattack)
+        if (bossStats.cooldown >= 0f) //&& !canshoot || !canattack)
         {
 
-            cooldown -= Time.deltaTime;
+            bossStats.cooldown -= Time.deltaTime;
             EnemyAnimator.SetBool("isCasting", false);
             EnemyAnimator.SetBool("JumpAttack", false);
             canattack = false;
             canshoot = false;
         }
 
-        if (cooldown <= 0f)
+        if (bossStats.cooldown <= 0f)
         {
             canshoot = true;
             canattack = true;
@@ -106,11 +112,11 @@ public class EnemyController : MonoBehaviour
 
     private void AttackPlayer()
     {
-        if ((Vector3.Distance(gameObject.transform.position, player.transform.position) <= minimumDistance && lowHealth && canattack))
+        if ((Vector3.Distance(gameObject.transform.position, player.transform.position) <= bossStats.minimumDistance && lowHealth && canattack))
         {
             EnemyAnimator.SetBool("isRunning", false);
             EnemyAnimator.SetBool("JumpAttack", true);
-            cooldown = 6f;
+            bossStats.cooldown = 6f;
             canattack = false;
 
         }
@@ -118,13 +124,13 @@ public class EnemyController : MonoBehaviour
 
     private void ShootPlayer()
     {
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= chaseLimit && !lowHealth && canshoot)
+        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= bossStats.chaseLimit && !lowHealth && canshoot)
         {
             EnemyAnimator.SetBool("isRunning", false);
             EnemyAnimator.SetBool("isCasting", true);
             Instantiate(enemyBullet, enemyShootPoint.transform.position, enemyShootPoint.transform.rotation);
             //canshoot = false;
-            cooldown = 4f;
+            bossStats.cooldown = 4f;
 
 
         };
@@ -135,7 +141,7 @@ public class EnemyController : MonoBehaviour
     {
 
         Quaternion newRotation = Quaternion.LookRotation(player.transform.position - transform.position);
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, enemyRotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, bossStats.enemyRotationSpeed * Time.deltaTime);
     }
 
     void MoveTowardsPlayer()
@@ -143,11 +149,11 @@ public class EnemyController : MonoBehaviour
         Vector3 deltaVector = player.transform.position - transform.position;
         Vector3 direction = deltaVector.normalized;
 
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= chaseDetection &&
-        Vector3.Distance(gameObject.transform.position, player.transform.position) >= chaseLimit)
+        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= bossStats.chaseDetection &&
+        Vector3.Distance(gameObject.transform.position, player.transform.position) >= bossStats.chaseLimit)
         {
 
-            transform.position += direction * enemySpeed * Time.deltaTime;
+            transform.position += direction * bossStats.enemySpeed * Time.deltaTime;
             Debug.Log("CHASING PLAYER");
             EnemyAnimator.SetBool("isRunning", true);
         };
@@ -169,26 +175,26 @@ public class EnemyController : MonoBehaviour
 
         if (other.gameObject.CompareTag("PlayerBullet") && isFree)
         {
-            enemyHealth -= 100f;
+            bossStats.enemyHealth -= 100f;
         };
     }
 
     private void EnemyHealthState()
 
     {
-        if (enemyHealth > 500 && isFree)
+        if (bossStats.enemyHealth > 500 && isFree)
         {
 
             behaviour = Behaviours.highHealth;
         }
 
-        if (enemyHealth < 500f && enemyHealth > 0f && isFree)
+        if (bossStats.enemyHealth < 500f && bossStats.enemyHealth > 0f && isFree)
         {
             lowHealth = true;
             behaviour = Behaviours.lowHealth;
         };
 
-        if (enemyHealth <= 0f)
+        if (bossStats.enemyHealth <= 0f)
         {
             muerto = true;
             //Destroy(gameObject);

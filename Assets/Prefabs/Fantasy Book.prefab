@@ -82,6 +82,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 20975549051654864, guid: efc62584556735b4a9833ee6752bb888, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: efc62584556735b4a9833ee6752bb888, type: 3}
       propertyPath: m_Name
       value: TEST2
@@ -113,6 +117,22 @@ PrefabInstance:
     - target: {fileID: 1768814428780145028, guid: efc62584556735b4a9833ee6752bb888, type: 3}
       propertyPath: m_AABB.m_Extent.z
       value: 1.1580286
+      objectReference: {fileID: 0}
+    - target: {fileID: 3130868001073529844, guid: efc62584556735b4a9833ee6752bb888, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3130868001073529844, guid: efc62584556735b4a9833ee6752bb888, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391877734343755802, guid: efc62584556735b4a9833ee6752bb888, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329608111665603064, guid: efc62584556735b4a9833ee6752bb888, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8363994981308120971, guid: efc62584556735b4a9833ee6752bb888, type: 3}
       propertyPath: m_DirtyAABB

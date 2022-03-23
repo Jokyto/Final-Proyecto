@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ed885eee543c04c89490cc695d30d6, type: 3}
   m_Name: Vampire Boss Data
   m_EditorClassIdentifier: 
-  hp: 1000
-  Speed: 1.8
-  Mana: 500
-  Magic_armor: 5
+  enemyHealth: 1000
+  enemySpeed: 4
+  chaseDetection: 30
+  chaseLimit: 2
+  minimumDistance: 1
+  enemyRotationSpeed: 10
+  cooldown: 4

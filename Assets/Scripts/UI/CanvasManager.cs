@@ -14,10 +14,11 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] GameObject camaraplayer;
     [SerializeField] GameObject enemyprefab;
     [SerializeField] GameObject playerPrefab;
+    [SerializeField] GameObject GameOver;
     // Start is called before the first frame update
     void Start()
     {
-
+        FindObjectOfType<PlayerMovementManager>().OnDeath += EnableGameOverUI;
     }
 
     // Update is called once per frame
@@ -39,5 +40,10 @@ public class CanvasManager : MonoBehaviour
             // Destroy(gameObject);
         }
 
+    }
+
+    public void EnableGameOverUI()
+    {
+        GameOver.gameObject.SetActive(true);
     }
 }

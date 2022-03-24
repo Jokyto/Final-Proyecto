@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerMovementManager : MonoBehaviour
 {
     [SerializeField] private Animator playerAnimator;
@@ -20,6 +21,9 @@ public class PlayerMovementManager : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] public GameObject shootPoint1;
   
+    //Event on Death
+    public event Action OnDeath;
+
 
     // Stats bools
     public bool muerto = false;
@@ -57,6 +61,7 @@ public class PlayerMovementManager : MonoBehaviour
         if (playerHealth <= 0f)
         {
             muerto = true;
+            OnDeath?.Invoke();
            
         }
         else

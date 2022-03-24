@@ -1804,6 +1804,7 @@ MonoBehaviour:
   fireRate: 1
   bulletPrefab: {fileID: 8849940931856487357, guid: 1951148fce07378449ba95e39cc8c9ca, type: 3}
   shootPoint1: {fileID: 1891195395144399614}
+  animationDelay: 1
   canshoot: 0
 --- !u!114 &2713392291501621179
 MonoBehaviour:
@@ -1831,6 +1832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mana: 300
+  manaRegenRate: 0.5
   playerHealth: 1000
   muerto: 0
   haveMana: 1

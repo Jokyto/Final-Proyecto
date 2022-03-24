@@ -21,7 +21,6 @@ public class MagicPlatformMovement : MonoBehaviour
     void Update()
     {
         PlatformMovement();
-
     }
 
 

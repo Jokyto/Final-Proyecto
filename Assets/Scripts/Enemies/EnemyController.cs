@@ -6,20 +6,13 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     // Start is called before the first frame update
-    
 
-   /* Design data
-    public float enemyHealth;
-    private float enemySpeed = 4f;
-    private float chaseDetection = 30f;
-    private float chaseLimit = 2f;
-    private float minimumDistance = 1f;
-    private float enemyRotationSpeed = 10f;
-    [SerializeField] private float cooldown; */
+
 
     [SerializeField] protected Boss_Data bossStats;
 
- 
+    public event Action OnBossDeath;
+
     [SerializeField] private GameObject enemyBullet;
     [SerializeField] private GameObject enemyShootPoint;
     [SerializeField] private GameObject player;
@@ -196,8 +189,9 @@ public class EnemyController : MonoBehaviour
 
         if (bossStats.enemyHealth <= 0f)
         {
+            OnBossDeath?.Invoke();
+            Debug.Log("Boss Envió Evento OnBossDeath");
             muerto = true;
-            //Destroy(gameObject);
         }
         else
         {

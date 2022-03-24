@@ -13,6 +13,8 @@ public class PlayerManager : MonoBehaviour
     public bool haveMana;
     [SerializeField] HealthBar Healthbar;
 
+    public event Action OnPlayerDeath;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +69,8 @@ public class PlayerManager : MonoBehaviour
     {
         if (playerHealth <= 0f)
         {
+            OnPlayerDeath?.Invoke();
+            Debug.Log("Player Envió Evento OnPlayerDeath");
             muerto = true;
         }
         else

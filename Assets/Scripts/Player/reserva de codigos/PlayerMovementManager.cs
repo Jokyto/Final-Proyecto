@@ -21,8 +21,7 @@ public class PlayerMovementManager : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] public GameObject shootPoint1;
   
-    //Event on Death
-    public event Action OnDeath;
+
 
 
     // Stats bools
@@ -61,7 +60,7 @@ public class PlayerMovementManager : MonoBehaviour
         if (playerHealth <= 0f)
         {
             muerto = true;
-            OnDeath?.Invoke();
+       
            
         }
         else

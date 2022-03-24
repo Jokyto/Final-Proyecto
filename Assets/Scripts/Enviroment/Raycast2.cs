@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Raycast2 : MonoBehaviour
 {
    
-    [SerializeField]private float raycastDistance = 3f;
-    [SerializeField] GameObject cameraSecondRoom;
-    [SerializeField] GameObject cameraPlayer;
+    private float raycastDistance = 3f;
+ 
     private bool activated = false;
+    public event Action OnRaycast2Active;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +36,9 @@ public class Raycast2 : MonoBehaviour
 
         if(Physics.Raycast(transform.position, Vector3.forward,out hit, raycastDistance)){
 
-            cameraSecondRoom.SetActive(true);
-            cameraPlayer.SetActive(false);
+            OnRaycast2Active?.Invoke();
             activated = true;
+            Debug.Log("Raycast2 envio evento OnRaycast2Active");
         }
 
     }

@@ -5,17 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class NextLVL : MonoBehaviour
 {
-   void Start()
-    {
-        
-    }
 
     // Update is called once per frame
-    void Update()
+    public void NextLevel()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SceneManager.LoadScene("Level2");
-            }
+        SceneManager.LoadScene("Level2");
     }
 }

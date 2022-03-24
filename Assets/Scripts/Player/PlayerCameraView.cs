@@ -11,7 +11,7 @@ public class PlayerCameraView : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class PlayerCameraView : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
 
-            Cursor.lockState = CursorLockMode.None;
+            //Cursor.lockState = CursorLockMode.None;
             
         }
 

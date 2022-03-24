@@ -247,9 +247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1dd5cb849d7484c8aecfb69a0192b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minIntensity: 3
-  maxIntensity: 4
-  light: {fileID: 1928114613}
 --- !u!1001 &11935981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19884,7 +19881,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08638d441dd54141b51924ed9cf0a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raycastDistance: 2
 --- !u!1001 &1205939714
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20045,6 +20041,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2485621888040990076, guid: 8d86777834c5b2f4ba6d1162db8a729f, type: 3}
   m_PrefabInstance: {fileID: 5751422613536839937}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1208531359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208531353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcaf93512fd6cd94fae3be6719953fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1211570810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26123,6 +26131,7 @@ GameObject:
   - component: {fileID: 1459381733}
   - component: {fileID: 1459381732}
   - component: {fileID: 1459381731}
+  - component: {fileID: 1459381734}
   m_Layer: 0
   m_Name: Camera main
   m_TagString: Untagged
@@ -26189,12 +26198,21 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1459381730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 48.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1654473205}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!45 &1459381734
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459381730}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: a3047fb50d3bf6a45a71ef38e2068806, type: 2}
 --- !u!1001 &1461599952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38725,6 +38743,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 125
       objectReference: {fileID: 0}
+    - target: {fileID: 2485621889123016721, guid: 8d86777834c5b2f4ba6d1162db8a729f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485621889123016727, guid: 8d86777834c5b2f4ba6d1162db8a729f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485621889123016727, guid: 8d86777834c5b2f4ba6d1162db8a729f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1208531359}
+    - target: {fileID: 2485621889123016727, guid: 8d86777834c5b2f4ba6d1162db8a729f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485621889123016727, guid: 8d86777834c5b2f4ba6d1162db8a729f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NextLVL, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5480285535195614994, guid: 8d86777834c5b2f4ba6d1162db8a729f, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -325
@@ -38797,6 +38835,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1560088714}
+    - target: {fileID: 5751422613738286045, guid: 8d86777834c5b2f4ba6d1162db8a729f, type: 3}
+      propertyPath: Victory
+      value: 
+      objectReference: {fileID: 1208531353}
     - target: {fileID: 5751422613738286045, guid: 8d86777834c5b2f4ba6d1162db8a729f, type: 3}
       propertyPath: GameOver
       value: 

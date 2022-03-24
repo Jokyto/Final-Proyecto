@@ -12,53 +12,40 @@ public class PlayerShootScript : MonoBehaviour
     [SerializeField] private float fireRate = 1f;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] public GameObject shootPoint1;
+    [SerializeField] float animationDelay= 1f;
 
     public bool canshoot;
-    
+
 
 
     void Start()
     {
-
+        canshoot = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         PlayerShoot();
-        PlayerCooldown();
-    }
-    private void PlayerCooldown()
-    {
-        if (!canshoot)
-        {
-
-            cooldown -= Time.deltaTime * fireRate;
-
-            if (cooldown <= 0f)
-            {
-                canshoot = true;
-            }
-
-        };
+    
     }
 
     private void PlayerShoot()
     {
 
-        
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && canshoot && playerManager.haveMana)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canshoot)//&& playerManager.haveMana)
         {
-            //playerAnimator.SetBool("isCasting", true);
-        };
-
-        if (Input.GetKeyUp(KeyCode.Mouse0) && canshoot && playerManager.haveMana)
-        {
-            Instantiate(bulletPrefab, shootPoint1.transform.position, shootPoint1.transform.rotation);
-            canshoot = false;
-            cooldown = 2f;
-            playerManager.mana -=10;
+            StartCoroutine(ShootCoroutine(animationDelay));
         }
+    }
+
+    IEnumerator ShootCoroutine(float time)
+    {
+        canshoot = false;
+        GetComponent<PlayerAnimation>().playerAnimator.SetTrigger("triggerShoot");
+        yield return new WaitForSeconds(time);
+        Instantiate(bulletPrefab, shootPoint1.transform.position, shootPoint1.transform.rotation);
+        playerManager.mana -= 10;
+        yield return new WaitForSeconds(fireRate);
+        canshoot = true;
     }
 }

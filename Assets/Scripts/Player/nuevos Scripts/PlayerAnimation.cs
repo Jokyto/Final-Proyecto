@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    [SerializeField] private Animator playerAnimator;
+    public Animator playerAnimator;
     [SerializeField] private PlayerMovementScript playerMovement;
     [SerializeField] private PlayerShootScript playerShootScript;
     [SerializeField] PlayerManager playerManager;
@@ -21,14 +21,11 @@ public class PlayerAnimation : MonoBehaviour
         PlayerMove();
         PlayerJump();
         FallDetection();
-        PlayerShoot();
+        //PlayerShoot();
     }
 
-    private void PlayerShoot()
+    /*private void PlayerShoot()
     {
-
-
-
         if (Input.GetKeyDown(KeyCode.Mouse0) && playerShootScript.canshoot && playerManager.haveMana)
         {
             playerAnimator.SetBool("isCasting", true);
@@ -38,7 +35,7 @@ public class PlayerAnimation : MonoBehaviour
         {
             playerAnimator.SetBool("isCasting", false);
         }
-    }
+    }*/
 
     void PlayerMove()
 

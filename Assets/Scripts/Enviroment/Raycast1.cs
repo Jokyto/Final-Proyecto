@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Raycast1 : MonoBehaviour
 {
      private float raycastDistance = 3f;
     private bool activated = false;
 
-    public event Action OnRaycast1Active;
+    [SerializeField] private UnityEvent OnRaycast1Active;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +36,7 @@ public class Raycast1 : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.forward, out hit, raycastDistance))
         {
             OnRaycast1Active?.Invoke();
-            Debug.Log("Raycast1 envio evento OnRaycast1Active");
+            Debug.Log("Raycast1 envio Unityevent OnRaycast1Active");
             activated = true;
         }
 

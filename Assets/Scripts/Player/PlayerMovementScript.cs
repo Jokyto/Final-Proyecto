@@ -7,6 +7,7 @@ public class PlayerMovementScript : MonoBehaviour
 {
 
     [SerializeField] private float walkingSpeed = 3f;
+     public float WalkingSpeed { get => walkingSpeed; set => walkingSpeed = value; }
     [SerializeField] private float playerRotationSpeed = 300f;
     [SerializeField] private float jumpHeight = 3f;
     [SerializeField] PlayerCollision playerCollision;
@@ -20,6 +21,7 @@ public class PlayerMovementScript : MonoBehaviour
     private CharacterController ccPlayer;
 
     public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
+   
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +44,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         IsGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if(IsGrounded && velocidadVertical.y < 0f)
+        if (IsGrounded && velocidadVertical.y < 0f)
         {
             velocidadVertical.y = -2f;
         }
@@ -63,15 +65,15 @@ public class PlayerMovementScript : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 direction = new Vector3(horizontal, 0, vertical);
-        ccPlayer.Move(transform.TransformDirection(direction) * walkingSpeed * Time.deltaTime);
+        ccPlayer.Move(transform.TransformDirection(direction) * WalkingSpeed * Time.deltaTime);
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            walkingSpeed = 7f;
+            WalkingSpeed = 7f;
         };
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            walkingSpeed = 3f;
+            WalkingSpeed = 3f;
         };
 
 

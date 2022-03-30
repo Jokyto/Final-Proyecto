@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerCollision : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] PlayerManager playerManager;
-    
+    public event Action onGetDamage;
+    private bool CanTakeDamage= true;
 
-    private void Start() {
-
-        
-        
-    }
 
      private void OnControllerColliderHit(ControllerColliderHit hit){
 
@@ -24,10 +21,21 @@ public class PlayerCollision : MonoBehaviour
             playerManager.playerHealth -= 50f;
            
         }
-        if (hit.gameObject.CompareTag("Enemy"))
+        if (hit.gameObject.CompareTag("Enemy") && CanTakeDamage)
         {
-            playerManager.playerHealth -= 70f;
-           
+            StartCoroutine(DamagePlayer());
         }
     }
+
+    IEnumerator DamagePlayer()
+    {
+        
+        playerManager.playerHealth -= 70f;        
+        onGetDamage?.Invoke();
+        CanTakeDamage= false;
+        yield return new WaitForSeconds(1f);
+        CanTakeDamage = true;
+             
+    }
+
 }

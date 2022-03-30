@@ -8,7 +8,6 @@ public class Global_PP_Controler : MonoBehaviour
     private Vignette colorEffect;
     private ColorGrading Dead_effect;
     private bool IsRuntineDead = false;
-
     private bool IsRuntineDamage = false;
 
     private void Awake() 
@@ -17,6 +16,9 @@ public class Global_PP_Controler : MonoBehaviour
         Global_volume.profile.TryGetSettings(out colorEffect);
         Global_volume = GetComponent<PostProcessVolume>();
         Global_volume.profile.TryGetSettings(out Dead_effect);
+    }
+    private void Start() {
+        FindObjectOfType<PlayerCollision>().onGetDamage += DamageEffect;
     }
 
     private void Update() 
@@ -33,11 +35,8 @@ public class Global_PP_Controler : MonoBehaviour
             Alive();
         }
         if (Input.GetKey(KeyCode.F1))
-        {
-            if (!IsRuntineDamage && !IsRuntineDead)
-            {
-                StartCoroutine(Damage());
-            }         
+        {       
+                DamageEffect();      
         }
     }
     private void Death()
@@ -57,14 +56,14 @@ public class Global_PP_Controler : MonoBehaviour
     IEnumerator Damage()
     {
         colorEffect.active = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.7f);
         colorEffect.active = false;       
     }
 
 
-    public void OnDamage()
+    public void DamageEffect()
     {
-        if (!IsRuntineDamage)
+        if (!IsRuntineDamage && !IsRuntineDead)
         {
             StartCoroutine(Damage());
         }

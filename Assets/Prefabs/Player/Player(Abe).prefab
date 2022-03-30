@@ -1677,13 +1677,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2620610091819472621}
-  - component: {fileID: 1147511646450667113}
   - component: {fileID: 3106791711268854193}
   - component: {fileID: 632000527181834888}
+  - component: {fileID: 7378516086236670037}
   - component: {fileID: 3414612270224035251}
   - component: {fileID: 3156822083387558723}
   - component: {fileID: 2713392291501621179}
-  - component: {fileID: 7378516086236670037}
   - component: {fileID: 803414417083857567}
   - component: {fileID: 1560088711}
   - component: {fileID: 1560088717}
@@ -1712,28 +1711,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &1147511646450667113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6881658061473626415}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c15e52dcea2ddaa4f9d7a96962f715d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerAnimator: {fileID: 3106791711268854193}
-  playerHealth: 1000
-  walkingSpeed: 3
-  playerRotationSpeed: 300
-  jumpHeight: 3.5
-  cooldown: 1
-  fireRate: 1
-  bulletPrefab: {fileID: 8849940931856487357, guid: 1951148fce07378449ba95e39cc8c9ca, type: 3}
-  shootPoint1: {fileID: 1891195395144399614}
-  muerto: 0
 --- !u!95 &3106791711268854193
 Animator:
   serializedVersion: 3
@@ -1771,6 +1748,24 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.84, z: 0}
+--- !u!114 &7378516086236670037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6881658061473626415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab8fdd4f73b27d4458011b5b29850b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mana: 300
+  manaRegenRate: 0.5
+  playerHealth: 1000
+  muerto: 0
+  haveMana: 1
+  Healthbar: {fileID: 0}
 --- !u!114 &3414612270224035251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1819,24 +1814,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerManager: {fileID: 7378516086236670037}
---- !u!114 &7378516086236670037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6881658061473626415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab8fdd4f73b27d4458011b5b29850b82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mana: 300
-  manaRegenRate: 0.5
-  playerHealth: 1000
-  muerto: 0
-  haveMana: 1
-  Healthbar: {fileID: 0}
 --- !u!114 &803414417083857567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1889,7 +1866,7 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1147511646450667113}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
           m_MethodName: set_enabled
           m_Mode: 6
@@ -1903,7 +1880,7 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1147511646450667113}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
           m_MethodName: set_enabled
           m_Mode: 6

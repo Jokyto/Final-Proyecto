@@ -4771,6 +4771,8 @@ PlayableDirector:
     value: {fileID: 676920592}
   - key: {fileID: -2925047883288205425, guid: c6f140bb92c5c3f4bb58a0d14ef5bb35, type: 2}
     value: {fileID: 1312049550}
+  - key: {fileID: -2489454562431950628, guid: c6f140bb92c5c3f4bb58a0d14ef5bb35, type: 2}
+    value: {fileID: 551187814}
   m_ExposedReferences:
     m_References: []
 --- !u!81 &285599785
@@ -24448,6 +24450,8 @@ PlayableDirector:
     value: {fileID: 1371319021}
   - key: {fileID: 7065792667846937437, guid: c54f93f245ced354cad9753508c873a4, type: 2}
     value: {fileID: 1312049550}
+  - key: {fileID: 6055862358397478254, guid: c54f93f245ced354cad9753508c873a4, type: 2}
+    value: {fileID: 551187814}
   m_ExposedReferences:
     m_References: []
 --- !u!95 &1371319020
@@ -38784,7 +38788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5480285535195614994, guid: 8d86777834c5b2f4ba6d1162db8a729f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 262.58008
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5480285535276632991, guid: 8d86777834c5b2f4ba6d1162db8a729f, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -38792,7 +38796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5480285535276632991, guid: 8d86777834c5b2f4ba6d1162db8a729f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -257.2
+      value: -111
       objectReference: {fileID: 0}
     - target: {fileID: 5751422613738286042, guid: 8d86777834c5b2f4ba6d1162db8a729f, type: 3}
       propertyPath: m_RootOrder

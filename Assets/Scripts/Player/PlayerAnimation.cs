@@ -18,7 +18,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
-        PlayerMove();
+        //PlayerMove();
         PlayerJump();
         FallDetection();
         //PlayerShoot();
@@ -40,7 +40,7 @@ public class PlayerAnimation : MonoBehaviour
     void PlayerMove()
 
     {
-        if (Input.GetKey(KeyCode.W))
+       /* if (Input.GetKey(KeyCode.W))
         {
             playerAnimator.SetBool("isWalking", true);
         }; //caminar
@@ -86,8 +86,10 @@ public class PlayerAnimation : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             playerAnimator.SetBool("isRunning", false);
-        };
+        }; */
 
+        //playerAnimator.SetFloat("VelX",playerMovement.Horizontal);
+        //playerAnimator.SetFloat("VelY",playerMovement.Vertical);
 
     }
 

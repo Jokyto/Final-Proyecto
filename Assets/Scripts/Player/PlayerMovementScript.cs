@@ -5,28 +5,32 @@ using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour
 {
-
-    [SerializeField] private float walkingSpeed = 3f;
-     public float WalkingSpeed { get => walkingSpeed; set => walkingSpeed = value; }
-    [SerializeField] private float playerRotationSpeed = 300f;
-    [SerializeField] private float jumpHeight = 3f;
     [SerializeField] PlayerCollision playerCollision;
-    private float gravity = -9.8f;
-    private Vector3 velocidadVertical;
-
+    [SerializeField] Animator playerAnimator;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] LayerMask groundMask;
-    private bool isGrounded;
-    private CharacterController ccPlayer;
 
+    private CharacterController ccPlayer;
+    private float walkingSpeed = 3f;
+    private float playerRotationSpeed = 300f;
+    private float jumpHeight = 3f;
+    private float gravity = -9.8f;
+    private Vector3 velocidadVertical;
+
+    private bool isGrounded;
     public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
-   
+    public float PlayerRotationSpeed { get => playerRotationSpeed; set => playerRotationSpeed = value; }
+    public float WalkingSpeed { get => walkingSpeed; set => walkingSpeed = value; }
+    public float JumpHeight { get => jumpHeight; set => jumpHeight = value; }
+    public float Gravity { get => gravity; set => gravity = value; }
+
 
     // Start is called before the first frame update
     void Start()
     {
         ccPlayer = GetComponent<CharacterController>();
+        playerAnimator = GetComponent<Animator>();
 
     }
 
@@ -52,13 +56,13 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void GravityAcceleration()
     {
-        velocidadVertical.y += gravity * Time.deltaTime;
+        velocidadVertical.y += Gravity * Time.deltaTime;
         ccPlayer.Move(velocidadVertical * Time.deltaTime);
     }
 
 
 
-    void PlayerMove()
+    public void PlayerMove()
 
     {
         float horizontal = Input.GetAxis("Horizontal");
@@ -76,6 +80,8 @@ public class PlayerMovementScript : MonoBehaviour
             WalkingSpeed = 3f;
         };
 
+        playerAnimator.SetFloat("VelX", horizontal);
+        playerAnimator.SetFloat("VelY", vertical);
 
     }
 
@@ -85,7 +91,7 @@ public class PlayerMovementScript : MonoBehaviour
     void PlayerRotate()
     {
         float hAxis = Input.GetAxis("Mouse X");
-        transform.Rotate(Vector3.up, hAxis * playerRotationSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.up, hAxis * PlayerRotationSpeed * Time.deltaTime);
     }
 
     private void PlayerJump()
@@ -94,8 +100,8 @@ public class PlayerMovementScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && IsGrounded)
         {
-            velocidadVertical.y = Mathf.Sqrt(-jumpHeight * gravity);
-            //ccPlayer.Move(velocidadVertical *Time.deltaTime);
+            velocidadVertical.y = Mathf.Sqrt(-JumpHeight * Gravity);
+           
         };
 
     }

@@ -1826,10 +1826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce2341aaf75134d4ab5c029ad8aedc43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpeed: 3
-  playerRotationSpeed: 300
-  jumpHeight: 3
   playerCollision: {fileID: 2713392291501621179}
+  playerAnimator: {fileID: 0}
   groundCheck: {fileID: 2565363007825140335}
   groundDistance: 0.5
   groundMask:

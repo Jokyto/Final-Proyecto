@@ -25,6 +25,13 @@ public class PlayerCollision : MonoBehaviour
         {
             StartCoroutine(DamagePlayer());
         }
+
+        if (gameObject.CompareTag("Savepoint"))
+        {
+            Debug.Log("UN CHECK POINT");
+            Savepoint_Manager manager_sp = transform.parent.GetComponent<Savepoint_Manager>();
+            manager_sp.Find_savepoint(name);
+        }
     }
 
     IEnumerator DamagePlayer()

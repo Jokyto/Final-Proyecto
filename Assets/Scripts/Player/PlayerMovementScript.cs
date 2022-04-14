@@ -31,6 +31,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         ccPlayer = GetComponent<CharacterController>();
         playerAnimator = GetComponent<Animator>();
+        transform.position = FindObjectOfType<Savepoint_Manager>().get_savepoint(GameManager.instance.last_sp).position;
 
     }
 

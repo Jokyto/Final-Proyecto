@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public float playerHealth = 1000;
     public bool muerto = false;
     public bool haveMana;
+    public int last_sp;
     [SerializeField] HealthBar Healthbar;
 
     private void Awake()

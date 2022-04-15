@@ -581,7 +581,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3106791710050469727}
   m_LocalRotation: {x: 0.19699521, y: 0.012940403, z: -0.0025998396, w: 0.9803157}
-  m_LocalPosition: {x: 0.1, y: 1.797695, z: -1.528614}
+  m_LocalPosition: {x: 0.1, y: 1.94, z: -1.528614}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8385499079807221774}
@@ -1799,7 +1799,7 @@ MonoBehaviour:
   fireRate: 1
   bulletPrefab: {fileID: 8849940931856487357, guid: 1951148fce07378449ba95e39cc8c9ca, type: 3}
   shootPoint1: {fileID: 1891195395144399614}
-  animationDelay: 1
+  animationDelay: 0.3
   canshoot: 0
 --- !u!114 &2713392291501621179
 MonoBehaviour:
@@ -1827,7 +1827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCollision: {fileID: 2713392291501621179}
-  playerAnimator: {fileID: 0}
+  playerAnimator: {fileID: 3106791711268854193}
   groundCheck: {fileID: 2565363007825140335}
   groundDistance: 0.5
   groundMask:
@@ -1864,7 +1864,7 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 803414417083857567}
           m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
           m_MethodName: set_enabled
           m_Mode: 6
@@ -1878,7 +1878,7 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 803414417083857567}
           m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
           m_MethodName: set_enabled
           m_Mode: 6

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Enemy Minion Data
   m_EditorClassIdentifier: 
   enemyHealth: 500
-  enemySpeed: 2
-  chaseDetection: 10
+  enemySpeed: 4
+  chaseDetection: 5
   chaseLimit: 2
   minimumDistance: 1
   enemyRotationSpeed: 20

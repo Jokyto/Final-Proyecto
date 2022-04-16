@@ -10,5 +10,6 @@ public class NextLVL : MonoBehaviour
     public void NextLevel()
     {
         SceneManager.LoadScene("Level2");
+        this.gameObject.SetActive(false);
     }
 }

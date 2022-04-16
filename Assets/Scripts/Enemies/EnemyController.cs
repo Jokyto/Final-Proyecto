@@ -105,10 +105,13 @@ public class EnemyController : MonoBehaviour
 
     private void AttackPlayer()
     {
-        if ((Vector3.Distance(gameObject.transform.position, player.transform.position) <= bossStats.minimumDistance && lowHealth && canattack))
+        RaycastHit hit;
+
+        //if ((Vector3.Distance(gameObject.transform.position, player.transform.position) <= bossStats.minimumDistance && lowHealth && canattack))
+        if (Physics.Raycast(enemyShootPoint.transform.position, Vector3.forward, out hit, bossStats.minimumDistance) && lowHealth && canattack)
         {
-            EnemyAnimator.SetBool("isRunning", false);
-            EnemyAnimator.SetBool("JumpAttack", true);
+
+            EnemyAnimator.SetTrigger("TriggerAttack");
             bossStats.cooldown = 6f;
             canattack = false;
 
@@ -122,7 +125,6 @@ public class EnemyController : MonoBehaviour
             EnemyAnimator.SetBool("isRunning", false);
             EnemyAnimator.SetBool("isCasting", true);
             Instantiate(enemyBullet, enemyShootPoint.transform.position, enemyShootPoint.transform.rotation);
-            //canshoot = false;
             bossStats.cooldown = 4f;
 
 
@@ -198,6 +200,14 @@ public class EnemyController : MonoBehaviour
             muerto = false;
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 puntoB = Vector3.forward * bossStats.minimumDistance;
+        Gizmos.DrawRay(enemyShootPoint.transform.position, puntoB);
+    }
+
 }
 
 

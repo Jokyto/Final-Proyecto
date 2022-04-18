@@ -11,6 +11,8 @@ TagManager:
   - EnemyBullet
   - Grabable_item
   - Savepoint
+  - Outer_kingdom
+  - River_wall
   layers:
   - Default
   - TransparentFX

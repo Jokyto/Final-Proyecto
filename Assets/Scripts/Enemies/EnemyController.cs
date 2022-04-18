@@ -107,8 +107,10 @@ public class EnemyController : MonoBehaviour
     {
         RaycastHit hit;
 
+       // Vector3 raycastDirection = enemyShootPoint.transform.position - transform.position; 
+
         //if ((Vector3.Distance(gameObject.transform.position, player.transform.position) <= bossStats.minimumDistance && lowHealth && canattack))
-        if (Physics.Raycast(enemyShootPoint.transform.position, Vector3.forward, out hit, bossStats.minimumDistance) && lowHealth && canattack)
+        if (Physics.Raycast(enemyShootPoint.transform.position, enemyShootPoint.transform.forward , out hit, bossStats.minimumDistance) && lowHealth && canattack)
         {
 
             EnemyAnimator.SetTrigger("TriggerAttack");
@@ -204,7 +206,7 @@ public class EnemyController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Vector3 puntoB = Vector3.forward * bossStats.minimumDistance;
+        Vector3 puntoB = enemyShootPoint.transform.forward * bossStats.minimumDistance;
         Gizmos.DrawRay(enemyShootPoint.transform.position, puntoB);
     }
 

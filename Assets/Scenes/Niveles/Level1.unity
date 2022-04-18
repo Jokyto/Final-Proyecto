@@ -39117,6 +39117,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: canvasManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5751422613738286043, guid: 8d86777834c5b2f4ba6d1162db8a729f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5751422613738286045, guid: 8d86777834c5b2f4ba6d1162db8a729f, type: 3}
       propertyPath: camaramain
       value: 

@@ -161,6 +161,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -8778109796107686571, guid: f0d078e54b4ce324984d298c51236b15, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f0d078e54b4ce324984d298c51236b15, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -481,3 +485,39 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f0d078e54b4ce324984d298c51236b15, type: 3}
   m_PrefabInstance: {fileID: 8937333988473879874}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8802894940668252183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8778109796107686571, guid: f0d078e54b4ce324984d298c51236b15, type: 3}
+  m_PrefabInstance: {fileID: 8937333988473879874}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7967010850230691167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7883749328917080035, guid: f0d078e54b4ce324984d298c51236b15, type: 3}
+  m_PrefabInstance: {fileID: 8937333988473879874}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &2424003310943570897
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7967010850230691167}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Center: {x: 0.1, y: 0, z: 0}
+--- !u!135 &5145950257480427630
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8802894940668252183}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Center: {x: -0.1, y: 0, z: 0}

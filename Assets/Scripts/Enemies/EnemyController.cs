@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private GameObject enemyShootPoint;
     [SerializeField] private GameObject player;
 
+
+    private Behaviours behaviour;
     private enum Behaviours
     {
         caged,
@@ -24,7 +26,7 @@ public class EnemyController : MonoBehaviour
         lowHealth,
     }
 
-    private Behaviours behaviour;
+    
     private Animator EnemyAnimator;
     private Rigidbody rbEnemy;
     private bool isFree = false;
@@ -35,108 +37,53 @@ public class EnemyController : MonoBehaviour
 
 
 
+
+
+
     void Start()
     {
         EnemyAnimator = GetComponent<Animator>();
         rbEnemy = GetComponent<Rigidbody>();
         isFree = false;
         behaviour = Behaviours.caged;
-        bossStats.cooldown = 4f;
     }
 
     // Update is called once per frame
     void Update()
     {
         EnemyHealthState();
-
-        switch (behaviour)
-        {
-            case Behaviours.caged:
-                LookAtPlayer();
-                break;
-
-            case Behaviours.highHealth:
-                LookAtPlayer();
-                MoveTowardsPlayer();
-                ShootPlayer();
-                EnemyCooldown();
-                AttackPlayer();
-                break;
-
-            case Behaviours.lowHealth:
-                LookAtPlayer();
-                MoveTowardsPlayer();
-                EnemyCooldown();
-                AttackPlayer();
-                bossStats.chaseDetection = 100f;
-                bossStats.chaseLimit = bossStats.minimumDistance;
-                bossStats.enemySpeed = 4f;
-                break;
-
-            default:
-                Debug.Log("Error");
-                break;
-
-
-        }
     }
 
-
-    private void EnemyCooldown()
-    {
-        if (bossStats.cooldown >= 0f) //&& !canshoot || !canattack)
-        {
-
-            bossStats.cooldown -= Time.deltaTime;
-            EnemyAnimator.SetBool("isCasting", false);
-            EnemyAnimator.SetBool("JumpAttack", false);
-            canattack = false;
-            canshoot = false;
-        }
-
-        if (bossStats.cooldown <= 0f)
-        {
-            canshoot = true;
-            canattack = true;
-        }
-
-
-    }
 
     private void AttackPlayer()
     {
         RaycastHit hit;
 
-       // Vector3 raycastDirection = enemyShootPoint.transform.position - transform.position; 
+        // Vector3 raycastDirection = enemyShootPoint.transform.position - transform.position; 
 
-        //if ((Vector3.Distance(gameObject.transform.position, player.transform.position) <= bossStats.minimumDistance && lowHealth && canattack))
-        if (Physics.Raycast(enemyShootPoint.transform.position, enemyShootPoint.transform.forward , out hit, bossStats.minimumDistance) && lowHealth && canattack)
+        if (Physics.Raycast(enemyShootPoint.transform.position, enemyShootPoint.transform.forward, out hit, bossStats.minimumDistance) && canattack)
         {
-
-            EnemyAnimator.SetTrigger("TriggerAttack");
-            bossStats.cooldown = 6f;
-            canattack = false;
-
+            StartCoroutine(AttackCoroutine(bossStats.Meleecooldown));
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 puntoB = enemyShootPoint.transform.forward * bossStats.minimumDistance;
+        Gizmos.DrawRay(enemyShootPoint.transform.position, puntoB);
     }
 
     private void ShootPlayer()
     {
         if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= bossStats.chaseLimit && !lowHealth && canshoot)
         {
-            EnemyAnimator.SetBool("isRunning", false);
-            EnemyAnimator.SetBool("isCasting", true);
-            Instantiate(enemyBullet, enemyShootPoint.transform.position, enemyShootPoint.transform.rotation);
-            bossStats.cooldown = 4f;
-
-
-        };
+            StartCoroutine(AttackCoroutine(bossStats.Castcooldown));
+        }
 
     }
 
     void LookAtPlayer()
     {
-
         Quaternion newRotation = Quaternion.LookRotation(player.transform.position - transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, bossStats.enemyRotationSpeed * Time.deltaTime);
     }
@@ -157,6 +104,15 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+
+        if (other.gameObject.CompareTag("PlayerBullet") && isFree)
+        {
+            bossStats.enemyHealth -= 100f;
+        };
+    }
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -167,21 +123,40 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-
-        if (other.gameObject.CompareTag("PlayerBullet") && isFree)
-        {
-            bossStats.enemyHealth -= 100f;
-        };
-    }
 
     private void EnemyHealthState()
 
     {
-        if (bossStats.enemyHealth > 500 && isFree)
+                switch (behaviour)
         {
+            case Behaviours.caged:
+                LookAtPlayer();
+                break;
 
+            case Behaviours.highHealth:
+                LookAtPlayer();
+                MoveTowardsPlayer();
+                ShootPlayer();
+                AttackPlayer();
+                break;
+
+            case Behaviours.lowHealth:
+                LookAtPlayer();
+                MoveTowardsPlayer();
+                AttackPlayer();
+                bossStats.chaseDetection = 100f;
+                bossStats.chaseLimit = bossStats.minimumDistance;
+                bossStats.enemySpeed = 4f;
+                break;
+
+            default:
+                Debug.Log("Error");
+                break;
+
+        }
+
+        if (bossStats.enemyHealth > 500f && isFree)
+        {
             behaviour = Behaviours.highHealth;
         }
 
@@ -203,12 +178,24 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    IEnumerator AttackCoroutine(float time)
     {
-        Gizmos.color = Color.red;
-        Vector3 puntoB = enemyShootPoint.transform.forward * bossStats.minimumDistance;
-        Gizmos.DrawRay(enemyShootPoint.transform.position, puntoB);
+        canattack = false;
+        EnemyAnimator.SetTrigger("TriggerAttack");
+        yield return new WaitForSeconds(time);
+        canattack = true;
     }
+
+    IEnumerator CastCoroutine(float time)
+    {
+        canshoot = false;
+        EnemyAnimator.SetBool("isRunning", true);
+        EnemyAnimator.SetTrigger("CastAttack");
+        yield return new WaitForSeconds(time);
+        canshoot = true;
+    }
+
+
 
 }
 

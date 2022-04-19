@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 225999439093573148}
   - component: {fileID: 2108302181011169807}
   m_Layer: 10
-  m_Name: 'Magic platform '
+  m_Name: Magic platform
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

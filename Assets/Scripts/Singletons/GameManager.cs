@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public bool muerto = false;
     public bool haveMana;
     public int last_sp;
+    public bool totems_destroyed;
     [SerializeField] HealthBar Healthbar;
 
     private void Awake()

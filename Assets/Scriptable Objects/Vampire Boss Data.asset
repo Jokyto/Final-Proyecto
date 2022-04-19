@@ -16,6 +16,7 @@ MonoBehaviour:
   enemySpeed: 4
   chaseDetection: 30
   chaseLimit: 2
-  minimumDistance: 1
+  minimumDistance: 0.1
   enemyRotationSpeed: 10
-  cooldown: 4
+  Meleecooldown: 6
+  Castcooldown: 4

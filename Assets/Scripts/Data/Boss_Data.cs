@@ -12,5 +12,6 @@ public class Boss_Data : ScriptableObject
     [SerializeField] public float chaseLimit = 2f;
     [SerializeField] public float minimumDistance = 1f;
     [SerializeField] public float enemyRotationSpeed = 10f;
-    [SerializeField] public float cooldown = 4f;
+    [SerializeField] public float Meleecooldown = 6f;
+    [SerializeField] public float Castcooldown = 4f;
 }

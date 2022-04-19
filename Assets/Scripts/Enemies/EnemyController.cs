@@ -23,10 +23,10 @@ public class EnemyController : MonoBehaviour
     {
         caged,
         highHealth,
-        lowHealth,
+        lowHealth
     }
 
-    
+
     private Animator EnemyAnimator;
     private Rigidbody rbEnemy;
     private bool isFree = false;
@@ -61,7 +61,7 @@ public class EnemyController : MonoBehaviour
 
         // Vector3 raycastDirection = enemyShootPoint.transform.position - transform.position; 
 
-        if (Physics.Raycast(enemyShootPoint.transform.position, enemyShootPoint.transform.forward, out hit, bossStats.minimumDistance) && canattack)
+        if (Physics.Raycast(enemyShootPoint.transform.position, enemyShootPoint.transform.forward, out hit, bossStats.raycastDistance) && canattack)
         {
             StartCoroutine(AttackCoroutine(bossStats.Meleecooldown));
         }
@@ -69,15 +69,15 @@ public class EnemyController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Vector3 puntoB = enemyShootPoint.transform.forward * bossStats.minimumDistance;
+        Vector3 puntoB = enemyShootPoint.transform.forward * bossStats.raycastDistance;
         Gizmos.DrawRay(enemyShootPoint.transform.position, puntoB);
     }
 
     private void ShootPlayer()
     {
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= bossStats.chaseLimit && !lowHealth && canshoot)
+        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= bossStats.chaseLimit && behaviour == Behaviours.highHealth && canshoot)
         {
-            StartCoroutine(AttackCoroutine(bossStats.Castcooldown));
+            StartCoroutine(CastCoroutine(bossStats.Castcooldown));
         }
 
     }
@@ -127,7 +127,7 @@ public class EnemyController : MonoBehaviour
     private void EnemyHealthState()
 
     {
-                switch (behaviour)
+        switch (behaviour)
         {
             case Behaviours.caged:
                 LookAtPlayer();
@@ -145,7 +145,7 @@ public class EnemyController : MonoBehaviour
                 MoveTowardsPlayer();
                 AttackPlayer();
                 bossStats.chaseDetection = 100f;
-                bossStats.chaseLimit = bossStats.minimumDistance;
+                bossStats.chaseLimit = 0f;
                 bossStats.enemySpeed = 4f;
                 break;
 
@@ -154,6 +154,7 @@ public class EnemyController : MonoBehaviour
                 break;
 
         }
+            Debug.Log(behaviour);
 
         if (bossStats.enemyHealth > 500f && isFree)
         {
@@ -163,8 +164,10 @@ public class EnemyController : MonoBehaviour
         if (bossStats.enemyHealth < 500f && bossStats.enemyHealth > 0f && isFree)
         {
             lowHealth = true;
+
             behaviour = Behaviours.lowHealth;
-        };
+        
+        }
 
         if (bossStats.enemyHealth <= 0f)
         {
@@ -181,7 +184,7 @@ public class EnemyController : MonoBehaviour
     IEnumerator AttackCoroutine(float time)
     {
         canattack = false;
-        EnemyAnimator.SetTrigger("TriggerAttack");
+        EnemyAnimator.SetTrigger("TriggerAttack");    
         yield return new WaitForSeconds(time);
         canattack = true;
     }
@@ -189,8 +192,10 @@ public class EnemyController : MonoBehaviour
     IEnumerator CastCoroutine(float time)
     {
         canshoot = false;
-        EnemyAnimator.SetBool("isRunning", true);
+        EnemyAnimator.SetBool("isRunning", false);
         EnemyAnimator.SetTrigger("CastAttack");
+        Instantiate(enemyBullet, enemyShootPoint.transform.position, enemyShootPoint.transform.rotation);
+        Debug.Log("instancio bala");
         yield return new WaitForSeconds(time);
         canshoot = true;
     }

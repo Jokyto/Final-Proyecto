@@ -22,27 +22,30 @@ public class BulletMove : MonoBehaviour
 
         if (destroyTimer < 0f)
         {
-
             Destroy(gameObject);
-        };
+        }
 
         //if (Input.GetKeyDown(KeyCode.Space)) { ScaleBullet(); };
     }
     void MoveBullet(Vector3 direction)
     {
         transform.Translate(direction * bulletSpeed * Time.deltaTime);
-    
+
     }
 
-    private void OnCollisionEnter(Collision other) {
+    private void OnTriggerEnter(Collider other)
+    {
         {
-            Destroy(gameObject);
+            if (!other.gameObject.CompareTag("Enemy"))
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
-    /*void ScaleBullet()
-    {
-        transform.localScale = new Vector3(2f, 2f, 2f);
+/*void ScaleBullet()
+{
+    transform.localScale = new Vector3(2f, 2f, 2f);
 
-    }
+}
 }*/

@@ -6,8 +6,8 @@ public class BulletMovement : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody rbBullet;
-    [SerializeField] private float castForce = 3;
-    [SerializeField] float destroyTimer = 3f;
+    [SerializeField] private float castForce= 2f;
+    [SerializeField] float destroyTimer = 5f;
 
 
 

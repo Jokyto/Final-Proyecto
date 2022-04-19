@@ -128,8 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d58d3a05ddf22429b59b2abbd592ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castForce: 2
-  destroyTimer: 4
+  castForce: 3
+  destroyTimer: 5
 --- !u!54 &1592011764829732635
 Rigidbody:
   m_ObjectHideFlags: 0

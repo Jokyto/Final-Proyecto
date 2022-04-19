@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 1000
   enemySpeed: 4
-  chaseDetection: 30
-  chaseLimit: 2
-  minimumDistance: 0.1
+  chaseDetection: 100
+  chaseLimit: 0
+  minimumDistance: 1
+  raycastDistance: 1.5
   enemyRotationSpeed: 10
   Meleecooldown: 6
   Castcooldown: 4

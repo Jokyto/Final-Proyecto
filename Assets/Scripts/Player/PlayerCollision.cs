@@ -8,19 +8,16 @@ public class PlayerCollision : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] PlayerManager playerManager;
     public event Action onGetDamage;
-    private bool CanTakeDamage= true;
+    private bool CanTakeDamage = true;
 
 
-     private void OnControllerColliderHit(ControllerColliderHit hit){
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
 
-     Debug.Log(name + " COLISION CON " + hit.gameObject.name);
-    
-    
-       if (hit.gameObject.CompareTag("EnemyBullet"))
-        {
-            playerManager.playerHealth -= 50f;
-           
-        }
+        Debug.Log(name + " COLISION CON " + hit.gameObject.name);
+
+
+
         if (hit.gameObject.CompareTag("Enemy") && CanTakeDamage)
         {
             StartCoroutine(DamagePlayer());
@@ -36,13 +33,24 @@ public class PlayerCollision : MonoBehaviour
 
     IEnumerator DamagePlayer()
     {
-        
-        playerManager.playerHealth -= 70f;        
+
+        playerManager.playerHealth -= 70f;
         onGetDamage?.Invoke();
-        CanTakeDamage= false;
+        CanTakeDamage = false;
         yield return new WaitForSeconds(1f);
         CanTakeDamage = true;
-             
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("EnemyBullet"))
+        {
+            playerManager.playerHealth -= 50f;
+
+        }
+
     }
 
 }

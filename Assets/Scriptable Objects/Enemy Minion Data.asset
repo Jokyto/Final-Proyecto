@@ -15,6 +15,6 @@ MonoBehaviour:
   enemyHealth: 500
   enemySpeed: 4
   chaseDetection: 5
-  chaseLimit: 2
-  minimumDistance: 1
+  chaseLimit: 1
+  minimumDistance: 0.1
   enemyRotationSpeed: 20

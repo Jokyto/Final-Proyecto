@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13aaba2e217c85149a440b89ebc69214, type: 3}
   m_Name: Enemy Skeleton Data
   m_EditorClassIdentifier: 
-  hp: 20
-  Speed: 1.5
-  Mana: 25
-  Magic_armor: 1
+  enemyHealth: 500
+  enemySpeed: 4
+  chaseDetection: 10
+  chaseLimit: 1
+  minimumDistance: 0.1
+  enemyRotationSpeed: 10
+  raycastDistance: 0.5
+  atkCooldown: 2

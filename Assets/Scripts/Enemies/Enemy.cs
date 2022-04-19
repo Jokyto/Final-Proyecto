@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,10 @@ public class Enemy : MonoBehaviour
 
 
     [SerializeField] protected GameObject player;
+    [SerializeField] protected GameObject enemyMeleeDistance;
+
     protected bool muerto = false;
+    protected bool canattack;
     protected Animator EnemyAnimator;
     protected Rigidbody rbEnemy;
 
@@ -30,6 +34,7 @@ public class Enemy : MonoBehaviour
     {
         EnemyAnimator = GetComponent<Animator>();
         rbEnemy = GetComponent<Rigidbody>();
+        canattack = true;
     }
 
     // Update is called once per frame
@@ -38,7 +43,24 @@ public class Enemy : MonoBehaviour
         LookAtPlayer();
         MoveTowardsPlayer();
         EnemyHealthState();
+        AttackPlayer();
 
+    }
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 puntoB = enemyMeleeDistance.transform.forward * enemyStats.raycastDistance;
+        Gizmos.DrawRay(enemyMeleeDistance.transform.position, puntoB);
+    }
+
+  public virtual void AttackPlayer()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(enemyMeleeDistance.transform.position, enemyMeleeDistance.transform.forward, out hit, enemyStats.raycastDistance) && canattack)
+        {
+            StartCoroutine(AttackCoroutine(enemyStats.atkCooldown));
+        }
     }
 
     public void LookAtPlayer()
@@ -94,4 +116,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    IEnumerator AttackCoroutine(float time)
+    {
+        canattack = false;
+        //EnemyAnimator.SetTrigger("TriggerAttack");   
+
+        // Hacer el salto hacia adelante. 
+        yield return new WaitForSeconds(time);
+        canattack = true;
+    }
+
+    
+        
 }

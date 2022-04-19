@@ -30,7 +30,7 @@ public class EnemySkeleton : Enemy
         Vector3 deltaVector = waypoints[currentindex].position - transform.position;
         Vector3 direction = deltaVector.normalized;
 
-        
+
 
         if (Vector3.Distance(gameObject.transform.position, player.transform.position) >= enemyStats.chaseDetection)
         {
@@ -41,7 +41,7 @@ public class EnemySkeleton : Enemy
 
             //orientacion del enemigo
             //transform.forward = Vector3.Lerp(Vector3.forward, direction, enemyRotationSpeed * Time.deltaTime);
-             Quaternion newRotation = Quaternion.LookRotation(waypoints[currentindex].position - transform.position);
+            Quaternion newRotation = Quaternion.LookRotation(waypoints[currentindex].position - transform.position);
             transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, enemyStats.enemyRotationSpeed * Time.deltaTime);
 
             if (deltaVector.magnitude <= patrolMinimumDistance)
@@ -69,6 +69,11 @@ public class EnemySkeleton : Enemy
         }
     }
 
+    public override void AttackPlayer()
+    {
+        StartCoroutine(SkeletonAttackCoroutine(enemyStats.atkCooldown));
+    }
+
     public override void MoveTowardsPlayer()
     {
         base.MoveTowardsPlayer();
@@ -77,7 +82,13 @@ public class EnemySkeleton : Enemy
             EnemyAnimator.SetBool("isWalking", false);
         }
     }
-
+    IEnumerator SkeletonAttackCoroutine(float time)
+    {
+        canattack = false;
+        EnemyAnimator.SetTrigger("TriggerAttack");
+        yield return new WaitForSeconds(time);
+        canattack = true;
+    }
 
 
 

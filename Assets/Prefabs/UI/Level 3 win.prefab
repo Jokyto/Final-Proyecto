@@ -133,13 +133,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 102900000, guid: 867ee9240c10fc94cb677af1f66b5b21, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 7341970568130119839}
+        m_TargetAssemblyTypeName: Go_to_menu, Assembly-CSharp
+        m_MethodName: Load_menu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -278,13 +278,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 102900000, guid: 867ee9240c10fc94cb677af1f66b5b21, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 7341970568130119839}
+        m_TargetAssemblyTypeName: Go_to_menu, Assembly-CSharp
+        m_MethodName: Load_menu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -931,13 +931,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 102900000, guid: 867ee9240c10fc94cb677af1f66b5b21, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 7341970568130119839}
+        m_TargetAssemblyTypeName: Go_to_menu, Assembly-CSharp
+        m_MethodName: Load_menu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -955,6 +955,7 @@ GameObject:
   - component: {fileID: 5764453352774203733}
   - component: {fileID: 5764453352774203734}
   - component: {fileID: 5764453352774203735}
+  - component: {fileID: 7341970568130119839}
   m_Layer: 5
   m_Name: Level 3 win
   m_TagString: Untagged
@@ -1045,6 +1046,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7341970568130119839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5764453352774203721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e1da2ab96ae9844ac55311874d4982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5764453352854368029
 GameObject:
   m_ObjectHideFlags: 0

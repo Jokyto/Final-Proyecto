@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8166896532052555259}
   m_Layer: 0
   m_Name: Final Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 7842501805903153215}
   m_Layer: 0
   m_Name: DragonBreath
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4912,6 +4912,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3221806716428268519}
     m_Modifications:
+    - target: {fileID: -8778109796107686571, guid: 8056408c62f6c0a45b77200515b2efb2, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8056408c62f6c0a45b77200515b2efb2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4956,6 +4960,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7883749328917080035, guid: 8056408c62f6c0a45b77200515b2efb2, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8056408c62f6c0a45b77200515b2efb2, type: 3}
       propertyPath: m_Name
       value: maw_j_laygo@Orc Idle
@@ -4967,8 +4975,44 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8056408c62f6c0a45b77200515b2efb2, type: 3}
   m_PrefabInstance: {fileID: 3394682405492814825}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2968353806619057852 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8778109796107686571, guid: 8056408c62f6c0a45b77200515b2efb2, type: 3}
+  m_PrefabInstance: {fileID: 3394682405492814825}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4465737109545089785 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7861831855079945968, guid: 8056408c62f6c0a45b77200515b2efb2, type: 3}
   m_PrefabInstance: {fileID: 3394682405492814825}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4434671690890783732 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7883749328917080035, guid: 8056408c62f6c0a45b77200515b2efb2, type: 3}
+  m_PrefabInstance: {fileID: 3394682405492814825}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &6253329959845017229
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2968353806619057852}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: -0.26, y: 0, z: 0}
+--- !u!135 &1999691421859593352
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4434671690890783732}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0.31, y: 0, z: 0}

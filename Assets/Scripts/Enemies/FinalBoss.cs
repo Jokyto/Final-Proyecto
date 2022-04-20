@@ -5,21 +5,23 @@ using UnityEngine;
 
 public class FinalBoss : MonoBehaviour
 {
+    public event Action OnFinalBossDeath;
     private Animator bossAnimator;
     private Rigidbody rbBoss;
     private bool canMelee;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject firebreath;
     [SerializeField] protected FinalBoss_Data bossStats;
 
 
 
     void Start()
     {
-       // FindObjectOfType<EnemyController>().OnBossDeath += StartBattle;
+        // FindObjectOfType<EnemyController>().OnBossDeath += StartBattle;
         bossAnimator = GetComponent<Animator>();
         rbBoss = GetComponent<Rigidbody>();
         canMelee = true;
-    
+
     }
 
 
@@ -27,7 +29,11 @@ public class FinalBoss : MonoBehaviour
     {
         LookAtPlayer();
         AttackPlayer();
+        Death();
     }
+
+
+
     //*****************************************************************************************
 
     void LookAtPlayer()
@@ -47,6 +53,15 @@ public class FinalBoss : MonoBehaviour
             StartCoroutine(RoarAtkCoroutine(bossStats.roarCooldown));
         }
     }
+    private void Death()
+    {
+        if (bossStats.enemyHealth <= 0f)
+        {
+            OnFinalBossDeath?.Invoke();
+            Debug.Log("FinalBoss Envió Evento OnFinalBossDeath");
+            Destroy(gameObject, 1);
+        }
+    }
 
     IEnumerator MeleeAtkCoroutine(float time)
     {
@@ -58,8 +73,12 @@ public class FinalBoss : MonoBehaviour
 
     IEnumerator RoarAtkCoroutine(float time)
     {
-
+        
         bossAnimator.SetTrigger("RoarAtk");
+        yield return new WaitForSeconds(1.5f);
+        firebreath.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        firebreath.SetActive(false);
         yield return new WaitForSeconds(time);
         Debug.Log("Ataque ranged");
 

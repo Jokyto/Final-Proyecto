@@ -34,7 +34,7 @@ public class PlayerCollision : MonoBehaviour
     IEnumerator DamagePlayer()
     {
 
-        playerManager.playerHealth -= 70f;
+        playerManager.playerHealth -= 100f;
         onGetDamage?.Invoke();
         CanTakeDamage = false;
         yield return new WaitForSeconds(1f);
@@ -47,7 +47,7 @@ public class PlayerCollision : MonoBehaviour
 
         if (other.gameObject.CompareTag("EnemyBullet"))
         {
-            playerManager.playerHealth -= 50f;
+            playerManager.playerHealth -= 75f;
 
         }
 

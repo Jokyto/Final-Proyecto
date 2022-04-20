@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13aaba2e217c85149a440b89ebc69214, type: 3}
   m_Name: Enemy Minion Data
   m_EditorClassIdentifier: 
-  enemyHealth: 500
+  enemyHealth: 300
   enemySpeed: 4
   chaseDetection: 5
   chaseLimit: 1
   minimumDistance: 0.1
   enemyRotationSpeed: 20
+  raycastDistance: 3
+  atkCooldown: 2
+  jumpForce: 10

@@ -71,7 +71,13 @@ public class EnemySkeleton : Enemy
 
     public override void AttackPlayer()
     {
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(enemyMeleeDistance.transform.position, enemyMeleeDistance.transform.forward, out hit, enemyStats.raycastDistance) && canattack)
+        {
         StartCoroutine(SkeletonAttackCoroutine(enemyStats.atkCooldown));
+        }
     }
 
     public override void MoveTowardsPlayer()

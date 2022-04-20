@@ -17,8 +17,6 @@ public class Enemy : MonoBehaviour
     protected float enemyRotationSpeed = 10f; */
 
     [SerializeField] protected Enemy_Data enemyStats;
-
-
     [SerializeField] protected GameObject player;
     [SerializeField] protected GameObject enemyMeleeDistance;
 
@@ -53,7 +51,7 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawRay(enemyMeleeDistance.transform.position, puntoB);
     }
 
-  public virtual void AttackPlayer()
+    public virtual void AttackPlayer()
     {
         RaycastHit hit;
 
@@ -85,9 +83,11 @@ public class Enemy : MonoBehaviour
             Debug.Log(this.name + " CHASING PLAYER");
             EnemyAnimator.SetBool("isRunning", true);
             enemyStats.enemySpeed = 4f;
-    
-        }else{
-          EnemyAnimator.SetBool("isRunning", false);  
+
+        }
+        else
+        {
+            EnemyAnimator.SetBool("isRunning", false);
         }
 
     }
@@ -119,13 +119,13 @@ public class Enemy : MonoBehaviour
     IEnumerator AttackCoroutine(float time)
     {
         canattack = false;
-        //EnemyAnimator.SetTrigger("TriggerAttack");   
-
+        Debug.Log("Minion Ataca");
+        rbEnemy.AddForce(Vector3.up * enemyStats.jumpForce, ForceMode.Impulse);
         // Hacer el salto hacia adelante. 
         yield return new WaitForSeconds(time);
         canattack = true;
     }
 
-    
-        
+
+
 }

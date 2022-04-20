@@ -15,6 +15,7 @@ public class Enemy_Data : ScriptableObject
     [SerializeField]public float enemyRotationSpeed = 10f;
     [SerializeField]public float raycastDistance = 1.5f;
     [SerializeField]public float atkCooldown = 2f;
+    [SerializeField]public float jumpForce = 2f;
 
 
 

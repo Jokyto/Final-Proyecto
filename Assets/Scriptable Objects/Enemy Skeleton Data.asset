@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Enemy Skeleton Data
   m_EditorClassIdentifier: 
   enemyHealth: 500
-  enemySpeed: 4
+  enemySpeed: 2
   chaseDetection: 10
   chaseLimit: 1
   minimumDistance: 0.1
   enemyRotationSpeed: 10
-  raycastDistance: 0.5
+  raycastDistance: 1.5
   atkCooldown: 2
+  jumpForce: 2

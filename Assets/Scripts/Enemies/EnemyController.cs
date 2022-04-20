@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-
-
     [SerializeField] protected Boss_Data bossStats;
 
     public event Action OnBossDeath;
@@ -154,7 +150,7 @@ public class EnemyController : MonoBehaviour
                 break;
 
         }
-            Debug.Log(behaviour);
+        Debug.Log(behaviour);
 
         if (bossStats.enemyHealth > 500f && isFree)
         {
@@ -166,7 +162,7 @@ public class EnemyController : MonoBehaviour
             lowHealth = true;
 
             behaviour = Behaviours.lowHealth;
-        
+
         }
 
         if (bossStats.enemyHealth <= 0f)
@@ -184,7 +180,7 @@ public class EnemyController : MonoBehaviour
     IEnumerator AttackCoroutine(float time)
     {
         canattack = false;
-        EnemyAnimator.SetTrigger("TriggerAttack");    
+        EnemyAnimator.SetTrigger("TriggerAttack");
         yield return new WaitForSeconds(time);
         canattack = true;
     }
